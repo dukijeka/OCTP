@@ -1,0 +1,35 @@
+
+1) registracija
+
+2) logovanje
+
+3) upload dokumenta
+
+4) pregled/pretraga dokumenata
+
+5) ocenjivanje 
+
+6) prevodjenje
+
+7) dodavanje moderatora
+
+8) uklanjanje moderatora (bez brisanja naloga)
+
+9) uklanjanje korisnickog naloga
+
+10) brisanje dokumenta od strane administratora
+
+11) brisanje dokumenta od strane korisnika
+
+12) promena lozinke
+
+13) dodavanje jezika
+
+14) promena email adrese
+
+15) odjavljivanje
+
+16) brisanje naloga od strane korisnika
+
+17) prijavljivanje dokumenata od strane korisnika
+

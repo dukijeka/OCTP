@@ -1,0 +1,17 @@
+
+1) stranica za registraciju
+
+2) stranica za logovanje 
+
+3) profil korisnika
+
+4) stranica pregled svih dokumenata
+
+5) stranica pregled/prevod pojedinacnog dokumenata
+
+6) administracija korisnickog profila
+
+7) stranica za upload dokumenata
+
+8) stranica za prijavljivanje neprikladnih dokumenata
+
