@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Edit Profile</title>
+    </head>
+    
+    <body>
+        <center>
+    
+        <div>
+            Here are your registration details. If you make any changes you must click the "Save changes" button.
+            Fields marked with an asterisk * are required
+        </div>
+        
+        <form action="" method="POST" name="update" id="update">
+<table>
+                  <tbody><tr>
+                    <td width="28%"><div align="right"><strong>*Name </strong></div></td>
+                    <td width="72%">
+                    	<input name="Name" id="Name" value="Dušan" size="17" maxlength="15" style="margin:0;" onblur="checkAndModifyName()" class="ui-widget" type="text">
+                    	&nbsp;<span id="errName" class="errors"> </span>
+					</td>
+                  </tr>
+                
+				
+                  <tr>
+                    <td valign="top">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td valign="top"><div align="right"><strong>*My Languages</strong></div></td>
+                    <td valign="top">
+						<input type="checkbox" name="vehicle" value="Bike">English<br>
+                        <input type="checkbox" name="vehicle" value="Bike">Spanish<br>
+                        <input type="checkbox" name="vehicle" value="Bike">German<br>
+                        <input type="checkbox" name="vehicle" value="Bike">Klingon<br>
+                   </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><div align="center">
+                      <input id="lg" name="lg" value="en" type="hidden">
+                      <button id="Save" onclick="window.alert('Changes saved')">Save changes</button>
+                    </div></td>
+                  </tr>
+          </tbody></table>                
+</form>
+        
+            <h3>Change password</h3>
+            <form action="" method="POST">
+                <table>
+                    <tr>
+                        <td>Old Password</td>
+                        <td><input name = "old password" type = "password" /></td>
+                    </tr>
+                    <tr>
+                        <td>New password</td>
+                        <td><input name = "new password" type = "password" /></td>
+                    </tr>
+                    <tr>
+                        <td>Retype new password</td>
+                        <td><input name = "old password" type = "password" /></td>
+                    </tr>
+
+                    <tr class="last-row-padding">
+                      <td>&nbsp;</td>
+                      <td><input name="Submit" value="Continue" type="submit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="Cancel" id="Cancel" value="Cancel" type="submit"></td>
+                    </tr>
+                </table>
+
+            </form>
+            
+             <h3>Change email</h3>
+            <form action="" method="POST">
+                <table>
+                    <tr>
+                        <td>New Email</td>
+                        <td><input name = "old password" type = "password" /></td>
+                    </tr>
+
+                    <tr class="last-row-padding">
+                      <td>&nbsp;</td>
+                      <td><input name="Submit" value="Continue" type="submit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="Cancel" id="Cancel" value="Cancel" type="submit"></td>
+                    </tr>
+                </table>
+
+            </form>
+            
+        </center>
+        
+        
+        
+    </body>
+</html>
