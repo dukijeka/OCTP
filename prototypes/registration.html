@@ -1,54 +1,56 @@
 <html>
     <head>
         <title>OCTP - Register</title>
-        <link rel="stylesheet" type="text/css" href="../css/registration.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
         <div id="wrapper">
-            <div class = "sidenav">
-
+            <div id="header">
             </div>
-            <div class = "main">
-                <form action="" method="GET">
-                    <h1>Registracija</h1>
+            <div class="imgcontainer">
+                <img src="../logos/avatar.png" alt="Avatar" class="avatar"  width = "10">
+            </div>
+            <div class="container">
+                <form action="" method="POST">
+                    <h1>Registration</h1>
                     <p>
-                        <label for="firstname">Ime</label>
+                        <label for="firstname">First name:</label>
                         <input id="name" type="text" name="name">
                     </p>
                     <p>
-                        <label for="lastname">Prezime</label>
+                        <label for="lastname">Last name:</label>
                         <input id="name" type="text" name="name">
                     </p>
                     <p>
-                        <label for="username">Korisnicko ime</label>
+                        <label for="username">Username:</label>
                         <input id="username" type="text" name="username">
                     </p>
                     <p>
-                        <label for="email">Email adresa:</label>
+                        <label for="email">Email address:</label>
                         <input id="email" type="email" name="email">
                     </p>
                     <p>
-                        <label for="password">Lozinka:</label>
+                        <label for="password">Password:</label>
                         <input id="password" type="password" name="password">
                     </p>
                     <p>
-                        <label for="pwdrepeat">Ponovite lozinku</label>
+                        <label for="pwdrepeat">Repeat password:</label>
                         <input id="pwdrepeat" type="password" name="pwdrepeat">
                     </p>
                     <p>
-                        Pol
+                        Gender
                         <br>
-                        <label for="gendermale">Muski</label>
+                        <label for="gendermale">Male</label>
                         <input id="gendermale" type="radio" name="gender">
-                        <label for="genderfemale">Zenski</label>
+                        <label for="genderfemale">Female</label>
                         <input for="genderfemale" type="radio" name="gender">
                     </p>
                     <p>
-                        <label for="dob">Datum rodjenja</label>
+                        <label for="dob">Date of birth</label>
                         <input id="dob" type="date" name="dob">
                     </p>
                     <p>
-                        <label for="nativelanguage">Maternji jezik</label>
+                        <label for="nativelanguage">Native language</label>
                         <select name="nativelanguage">
                             <option value="Serbian">Serbian</option>
                             <option value="English">English</option>
@@ -56,9 +58,16 @@
                             <option value="German">German</option>
                         </select>
                     </p>
-                    <input type="submit" value="Registruj se">
+                    <button type="submit">Register</button>
                 </form>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $("#header").load("Header.html");
+                $("#footer").load("footer.html");
+            });
+        </script>
     </body>
 </html>

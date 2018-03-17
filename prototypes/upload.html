@@ -1,19 +1,18 @@
 <html>
     <head>
         <title>OCTP - Upload</title>
-        <link rel="stylesheet" type="text/css" href="../css/registration.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
     <body>
         <div id="wrapper">
-            <div class = "sidenav">
-
+            <div id="header">
             </div>
-            <div class = "main">
+            <div class="container">
                 <form action="" method="GET">
-                    <h1>Upload dokumenta</h1>
+                    <h1>Document upload</h1>
                     
                     <p>
-                        <label for="typeChoice1">Fajl</label>
+                        <label for="typeChoice1">File</label>
                         <input type="radio" id="typeChoice1" name="typeChoice" checked>
                     </p>
                     <p>
@@ -23,11 +22,11 @@
                         <input type="file" id="file">
                         <textarea id="text" cols="60" rows="20"></textarea>
                     <p>
-                        Naslov dokumenta
+                        Document name
                         <input type="text">
                     </p>
                     <p>
-                        Jezik dokumenta
+                        Document language
                         <select name="srclanguage">
                             <option value="Serbian">Serbian</option>
                             <option value="English">English</option>
@@ -36,7 +35,7 @@
                         </select>
                     </p>
                     <p>
-                        Zeljeni jezik
+                        Required language
                         <select name="dstlanguage">
                             <option value="Serbian">Serbian</option>
                             <option value="English">English</option>
@@ -44,9 +43,16 @@
                             <option value="German">German</option>
                         </select>
                     </p>
-                    <input type="submit" value="Upload!">
+                    <button type="submit">Upload</button>
                 </form>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $("#header").load("Header.html");
+                $("#footer").load("footer.html");
+            });
+        </script>
     </body>
 </html>
