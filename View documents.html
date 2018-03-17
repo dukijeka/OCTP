@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<title>View documents</title>
+	</head>
+	<body>
+		<div id = "header"></div>
+		<div class = "prostor">
+			<div id = "izbor">
+				<form>
+				<p>Translate from: </p>
+					<select id="from">
+						<option id="ENG">English</option>
+						<option id="GER">German</option>
+						<option id="SPA">Spanish</option>
+						<option id="SRB">Serbian</option>
+						<option id="BUL">Bulgarian</option>
+						<option id="HUN">Hungarian</option>
+					</select> 
+				<p>Translate to: </p>
+					<select id="to">
+						<option id="ENG">English</option>
+						<option id="GER">German</option>
+						<option id="SPA">Spanish</option>
+						<option id="SRB">Serbian</option>
+						<option id="BUL">Bulgarian</option>
+						<option id="HUN">Hungarian</option>
+					</select> 
+				<p>Sort by: </p>
+					<select id="sort_date">
+						<option id="DNew">Date newest</option>
+						<option id="DOld">Date oldest</option>
+					</select> 
+					<br><br>
+					<select id="sort_want">
+						<option id="DWas">Date wanted asc</option>
+						<option id="DWde">Date wanted desc</option>
+					</select> 
+				<br><br><input type = "button" onClick="myF()" value = "Show"></input>
+				</form>
+			</div>
+			<div id = "tekst">
+				<h2>Documents</h2>
+				<div class="docum" data-from = "English" data-to = "Serbian" data-added="14.4.2018." data-wanted="30.5.2018." >
+					<div class="title">Amelia Earhart Possibly Found</div>
+					<div class="fromto">
+					<div class="tfrom">From: English</div>
+					<div class="tto">To: Serbian</div>
+					</div>
+					<div class="tekst">
+					<hr>
+					<p>
+						In 1932, Amelia Earhart was the first woman to fly solo over the Atlantic Ocean from Newfoundland to France. She had to land partway through her flight in Northern Ireland when she had problems with her plane 15 hours into the flight. On July 2nd, 1937, the US aviator and her navigator Fred Noonan flew over the Pacific Ocean and disappeared; the mystery of what happened to Earhart has continued until now. In 1940, people found a female skeleton on the island of Nikumaroro in the South Pacific that people now believe is likely Earhart. New forensic analysis suggests that she may have crash-landed and died.
+					</p>
+					</div>
+				</div>
+				<div class="docum" data-from = "English" data-to = "Serbian" data-added="14.4.2018." data-wanted="30.5.2018." >
+					<div class="title">Zoo Has Problems</div>
+					<div class="fromto">
+					<div class="tfrom">From: English</div>
+					<div class="tto">To: Serbian</div>
+					</div>
+					<div class="tekst">
+					<hr>
+					<p>
+						A zoo in Indonesia is under heavy criticism again. This comes after the zoo made headlines for starving its animals, and then it closed in 2016 after an elephant died. Now, a video has emerged of a visitor flicking a cigarette into an orangutan’s living area. The primate picked it up and started smoking. Animal activists are livid and want the zoo to take full responsibility.
+					</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div id = "footer"></div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+		$(function() {
+			$("#header").load("Header.html");
+			$("#footer").load("footer.html");
+		});
+		</script>
+		<script src = "funkcija.js"></script>
+	</body>
+</html>
