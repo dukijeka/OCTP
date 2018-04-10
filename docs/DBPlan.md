@@ -21,18 +21,21 @@ language (
 
 	id,
 	name
-)
+	
+);
 
 knows_language (
 
 	userId,
 	languageId
+	
 );
 
 translation (
 
 	id,
 	sentenceId,
+	languageId,
 	userId,
 	date,
 	translationText
@@ -54,9 +57,7 @@ document (
 	postingUserId,
 	dateCreated,
 	languageId,
-	languageRequestedId,
 	text,
-
 
 );
 
@@ -68,5 +69,20 @@ sentence (
 
 );
 
+wanted_translations (
+
+	documentId,
+	wantedLanguageId
+
+);
+
+report (
+
+	documentId,
+	userId,
+	date,
+	explanation
+
+);
 
 
