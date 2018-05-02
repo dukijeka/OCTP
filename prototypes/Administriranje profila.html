@@ -1,68 +1,106 @@
- <html>
- <head>
-	<title>Edit Profile</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
- </head>
- <body>
- <div id = "header"></div>
- <!--<div class = "formaa">-->
-	 <form>
-	  <div class="imgcontainer">
-		<img src="../logos/avatar.png" alt="Avatar" class="avatar"  width = "10">
-	  </div>
+<html>
+    <head>
+        <title>Edit Profile</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-	  <div class="container">
-         <label> <b>Here are your registration details. If you make any changes you must click the "Save changes" button. Fields marked with an asterisk * are required. </b></label> <br />
-          <hr />
-		<label for="name"><b>*Name</b></label>
-		<input type="text" placeholder="Enter Your Name" name="name" required>
-          
-        <label for="vehicle"><b>*My languages: </b></label> <br />
-        <input type="checkbox" name="vehicle" value="Bike">English<br>
-        <input type="checkbox" name="vehicle" value="Bike">Spanish<br>
-        <input type="checkbox" name="vehicle" value="Bike">German<br>
-        <input type="checkbox" name="vehicle" value="Bike">Klingon<br>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
-		<button type="submit">Save changes</button>
-		
-	  </div>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-      <div class="container">
-         <label> <b>Here you can change your passowrd </b></label> <br />
-          <hr />
-		<label for="pass"><b>*Old password</b></label>
-		<input type="password" placeholder="Password" name="pass" required>
-          
-        <label for="newpass"><b>*New password</b></label>
-		<input type="password" placeholder="New Password" name="newpass" required>
-          
-        <label for="rnewpass"><b>*Retype new password</b></label>
-		<input type="password" placeholder="Retype new password" name="rnewpass" required>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-		<button type="submit">Save changes</button>
-		
-	  </div>
-         
-        <div class="container">
-         <label> <b>Here you can change your email </b></label> <br />
-          <hr />
-		<label for="email"><b>*New Email</b></label>
-		<input type="email" placeholder="Email" name="email" required>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
 
-		<button type="submit">Save changes</button>
-		
-	  </div>
-	  <div class="container" style="background-color:#f1f1f1">
-          <a href="View%20documents.html" class="dropbtn" target = "_blank"><button type="button" class="cancelbtn">Cancel</button></a>
-	  </div>
-	</form> 
-	<!--</div>-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
-		$(function() {
-			$("#header").load("Header.html");
-			$("#footer").load("footer.html");
-		});
-	</script>
- </body>
+    </head>
+    <body>
+        <div id = "header"></div>
+        <!--<div class = "formaa">-->
+        <form>
+            <div class="imgcontainer">
+                <img src="../logos/avatar.png" alt="Avatar" class="avatar"  width = "10">
+            </div>
+
+            <div class="container">
+                <label> <b>Here are your registration details. If you make any changes you must click the "Save changes" button. Fields marked with an asterisk * are required. </b></label> <br />
+                <hr />
+                <label for="name"><b>*Name</b></label>
+                <input type="text" placeholder="Enter Your Name" name="name" required>
+
+                <label for="vehicle"><b>*My languages: </b></label> <br />
+                <input type="checkbox" name="vehicle" value="Bike">English<br>
+                <input type="checkbox" name="vehicle" value="Bike">Spanish<br>
+                <input type="checkbox" name="vehicle" value="Bike">German<br>
+                <input type="checkbox" name="vehicle" value="Bike">Klingon<br>
+
+                <button type="submit">Save changes</button>
+
+            </div>
+
+            <div class="container">
+                <label> <b>Here you can change your passowrd </b></label> <br />
+                <hr />
+                <label for="pass"><b>*Old password</b></label>
+                <input type="password" placeholder="Password" name="pass" required>
+
+                <label for="newpass"><b>*New password</b></label>
+                <input type="password" placeholder="New Password" name="newpass" required>
+
+                <label for="rnewpass"><b>*Retype new password</b></label>
+                <input type="password" placeholder="Retype new password" name="rnewpass" required>
+
+                <button type="submit">Save changes</button>
+
+            </div>
+
+            <div class="container">
+                <label> <b>Here you can change your email </b></label> <br />
+                <hr />
+                <label for="email"><b>*New Email</b></label>
+                <input type="email" placeholder="Email" name="email" required>
+
+                <button type="submit">Save changes</button>
+
+            </div>
+
+            <div class="container">
+                <label> <b>Here you can delete your account </b></label> <br />
+                <hr />
+
+                <button id="deleteButton" onclick="confirmDeletion();">Delete Your Account</button>
+
+            </div>
+
+            <br> <br> <hr>
+            <div class="container" style="background-color:#f1f1f1">
+                <a href="View%20documents.html" class="dropbtn" target = "_blank"><button type="button" class="cancelbtn">Cancel</button></a>
+            </div>
+
+        </form> 
+
+
+
+        <!--</div>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $("#header").load("Header.html");
+                $("#footer").load("footer.html");
+            });
+        </script>
+
+        <script>
+            function confirmDeletion() {
+                if (confirm("Are you sure you want to delete your account? This cannot be undone!")) {
+
+                } else {
+
+                }
+
+            }
+        </script>
+    </body>
 </html>
