@@ -1,0 +1,613 @@
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: auto;
+}
+
+body {
+	font-family: Arial;
+	/*overflow-x:hidden;*/
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+    width: 10%;
+    border-radius: 50%;
+}
+
+/* Logo image */
+img.logo {
+    width: 20%;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+ul {
+    list-style-type: none;
+	/*margin-top: 60px;*/
+    margin-left: 0px;
+	margin-right: 0px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #008080;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a {
+	color:white;
+	text-decoration:none;
+	font:bold
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #008080;
+}
+
+li {
+    float: left;
+}
+
+button.uplbtn {
+    background-color: #008CBA;
+	display: inline-block;
+	color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #006666;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+body {
+	font-family: Arial;
+	overflow-y: auto;
+}
+.prostor {
+	/*height: 67%;*/
+	/*overflow-y: hidden;*/
+	width: 100%;
+}
+h2 {
+	color: #008080;
+}
+
+.prostor2 {
+	height: 69%;
+	width: 100%;
+}
+
+#izbor {
+	width: 15%;
+	float:left;
+	margin: 0;
+    padding: 0;
+	background-color: #f1f1f1;
+	font-size: 17px;
+	height: 100%;
+	padding-left: 20px;
+	/*position:fixed;*/
+}
+#tekst {
+	height:100%;
+	width: 80%;
+	float:left;
+	/*overflow-y: auto;*/
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+#informacije {
+	width: 74.5%;
+	height:99%;
+	float: left;
+}
+
+#forma {
+	width: 25%;
+	height:99%;
+	float: right;
+}
+
+#slike {
+	width: 50%;
+	float: right;
+	/*border-right: 6px solid #008080;*/
+}
+#slike img {
+	width:100%;
+}
+
+#info {
+	width:49%;
+	float:left;
+	height:20%;
+	padding:0;
+}
+#opis {
+	width:49%;
+	height:30%;
+	float:left;
+	padding-left:15px;
+	padding-right:15px;
+	border-top: 2px solid #008080;
+	border-left: 6px solid #008080;
+    background-color: white;
+	overflow-y:auto;
+}
+#map {
+	width:49%;
+	height:35%;
+	float:left;
+	border-left: 6px solid #008080;
+    background-color: lightgrey;
+}
+
+div.docum {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+	height: 200px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	overflow: hidden;
+	/*display: none;*/
+}
+
+div.desc {
+    padding: 10px;
+    text-align: center;
+	height: 20%;
+}
+
+div.title {
+	font-size: 20px;
+	text-decoration: bold;
+	background-color: #feb236;
+	width: 50%;
+	height: 25%;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	float: left;
+}
+div.fromto {
+	float: right;
+	width: 50%;
+}
+
+div.tfrom {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	width: 50%;
+	float:left;
+	height: 25%;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	text-align: center;
+}
+div.tto {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	border-right-color: #feb236;
+	width: 50%;
+	float:right;
+	height: 25%;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	text-align: center;
+}
+
+div.tekst {
+	width: 100%;
+	padding-left: 10;
+	padding-top: 50;
+	padding-bottom: 10;
+	padding-right: 10;
+}
+
+div.line {
+	width: 100%;
+}
+
+.home-in {
+	float:right;
+	background: #f2f2f2;
+	display: inline-block;
+	width: 100%;
+}
+.home-in li {
+	display: inline-block;
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	line-height: 250%;
+}
+.home-in li span {
+	font-size: 12px;
+	color: #777777;
+	float: left;
+}
+.home-in li span i {
+	font-size: 14px;
+	width: 30px;
+}
+
+.home-in.element i {
+	height: 20%;
+}
+
+select {
+    /*width: 50%;*/
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+#dugme {
+	width: 50%;
+	height: 5%
+}
+
+* {box-sizing:border-box}
+
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+table {
+	width: 100%;
+	height:20%;
+	/*font-size: 12px;*/
+	border-top: 2px solid #008080;
+	border-left: 6px solid #008080;
+    background-color: #f1f1f1;
+}
+.tabela2 {
+	width: 100%;
+	height:20%;
+    background-color: #f1f1f1;
+	border: 0;
+}
+
+table tr {
+	height: 33%;
+}
+
+table td{
+	width: 50%;
+	text-align: left;
+	vertical-align: center;
+	padding-left: 15px;
+	padding-right: 15px;
+	vertical-align: middle;
+}
+
+#zadugme {
+	width: 100%;
+	height: 15%;
+	text-align: center;
+}
+
+.dugme  {
+    background-color: #4CAF50; 
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+
+input[type="submit"] {
+    width: 50%;
+	height: 150%;
+}
+
+.dugme2 {
+	text-align: center;
+}
+
+.trouglogo img {
+	width: 100px;
+	margin-left: 35px;
+    margin-right: auto;
+}
+
+.vertical-menu {
+    
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #008080;
+	overflow-x: hidden;
+}
+
+.vertical-menu a {
+    background-color: #008080; /* Grey background color */
+    color: white; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #006666; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.dokument {
+	width: 82%;
+	float: right;
+	margin-right: 3%;
+}
+
+div.dokum {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+	height: auto;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	overflow: hidden;
+	/*display: none;*/
+}
+
+div.titl {
+	font-size: 20px;
+	text-decoration: bold;
+	background-color: #feb236;
+	width: 50%;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	float: left;
+}
+div.ttfrom {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	width: 50%;
+	float:left;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	text-align: center;
+}
+div.ttto {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	border-right-color: #feb236;
+	width: 50%;
+	float:right;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	text-align: center;
+}
