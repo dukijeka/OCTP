@@ -1,0 +1,32 @@
+<html>
+ <head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+ </head>
+ <body>
+	<div id="header"></div>
+	<form>
+	  <div class="imgcontainer">
+		<img src="../logos/avatar.png" alt="Avatar" class="avatar"  width = "10">
+	  </div>
+	  <div class="container">
+		<label for="uname"><b>Email:</b></label>
+		<input type="text" placeholder="Enter your email address" name="email" required>
+
+		<button type="submit">Reset password</button>
+		<label>
+		  <input type="checkbox" checked="checked" name="remember"> Remember me
+		</label>
+	  </div>
+	  <div class="container" style="background-color:#f1f1f1">
+		<button type="button" class="cancelbtn">Cancel</button>
+	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$("#header").load("Header.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
+</body>
+</html>
