@@ -1,64 +1,76 @@
 <html>
- <head>
-	<title>Admin</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
- </head>
- <body>
-	<div id="header"></div>
-	<div class="container">
-		<table>
-			<tr>
-				<td>
-					<a href="#">User 1</a>
-				</td>
-				<td>
-					<a href="#">Delete account</a>
-				</td>
-				<td>
-					<a href="#">Promote to moderator</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="#">User 2</a>
-				</td>
-				<td>
-					<a href="#">Delete account</a>
-				</td>
-				<td>
-					<a href="#">Promote to moderator</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="#">User 3</a>
-				</td>
-				<td>
-					<a href="#">Delete account</a>
-				</td>
-				<td>
-					<a href="#">Promote to moderator</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="#">User 4</a>
-				</td>
-				<td>
-					<a href="#">Delete account</a>
-				</td>
-				<td>
-					<a href="#">Promote to moderator</a>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
-		$(function() {
-			$("#header").load("Header.html");
-			$("#footer").load("footer.html");
-		});
-	</script>
-</body>
+    <head>
+        <title>Admin Panel</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="container">
+            <table>
+                <tr>
+                    <td>
+                        <a href="#">User 1</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Delete Account</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success">Promote to Moderator</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#">User 2</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Delete Account</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning">Remove Moderator Privileges</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#">User 3</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Delete Account</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success">Promote to Moderator</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#">User 4</a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Delete Account</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success">Promote to Moderator</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $("#header").load("Header.html");
+                $("#footer").load("footer.html");
+            });
+        </script>
+    </body>
 </html>
