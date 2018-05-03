@@ -3,7 +3,7 @@ form {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -20,7 +20,7 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: auto;
 }
 
 body {
@@ -38,17 +38,6 @@ button:hover {
     width: auto;
     padding: 10px 18px;
     background-color: #f44336;
-}
-
-
-/* Extra style for the cancel button (red) */
-#deleteButton {
-    width: 100%;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    background-color: #f21804;
 }
 
 /* Center the avatar image inside this container */
@@ -113,7 +102,7 @@ li a {
 }
 
 a {
-	/*color:white;*/
+	color:white;
 	text-decoration:none;
 	font:bold
 }
@@ -128,6 +117,15 @@ ul {
 
 li {
     float: left;
+}
+
+button.uplbtn {
+    background-color: #008CBA;
+	display: inline-block;
+	color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 li a, .dropbtn {
@@ -518,5 +516,98 @@ input[type="submit"] {
 }
 
 .dugme2 {
+	text-align: center;
+}
+
+.trouglogo img {
+	width: 100px;
+	margin-left: 35px;
+    margin-right: auto;
+}
+
+.vertical-menu {
+    
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #008080;
+	overflow-x: hidden;
+}
+
+.vertical-menu a {
+    background-color: #008080; /* Grey background color */
+    color: white; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #006666; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.dokument {
+	width: 82%;
+	float: right;
+	margin-right: 3%;
+}
+
+div.dokum {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+	height: auto;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	overflow: hidden;
+	/*display: none;*/
+}
+
+div.titl {
+	font-size: 20px;
+	text-decoration: bold;
+	background-color: #feb236;
+	width: 50%;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	float: left;
+}
+div.ttfrom {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	width: 50%;
+	float:left;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+	text-align: center;
+}
+div.ttto {
+	font-size: 20px;
+	text-decoration: bold;
+	border-bottom-color: #feb236;
+	border-top-color: #feb236;
+	border-right-color: #feb236;
+	width: 50%;
+	float:right;
+	height: 50px;
+	padding-left: 10;
+	padding-top: 10;
+	padding-bottom: 10;
 	text-align: center;
 }

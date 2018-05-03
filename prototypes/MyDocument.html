@@ -1,0 +1,43 @@
+ <html>
+ <head>
+	<title>MyDocument</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+ </head>
+ <body>
+	<div class="vertical-menu">
+		<a href="#" class="trouglogo"><img src="../logos/logo_trougao.jpeg" alt="Logo" width = "10"></a>
+		<a href="#">Download document</a>
+		<a href="#">Delete document</a>
+		<a href="#">See all documents</a>
+		<a href="#">Donate</a>
+	</div> 
+	<div class="dokument">
+		<div class="dokum" data-from = "English" data-to = "Serbian" data-added="14.4.2018." data-wanted="30.5.2018." >
+			<div class="titl">Amelia Earhart Possibly Found</div>
+			<div class="fromto">
+				<div class="ttfrom">From: English</div>
+				<div class="ttto">To: Serbian</div>
+			</div>
+			<div class="tekst">
+				<hr>
+				<p>
+					In 1932, Amelia Earhart was the first woman to fly solo over the Atlantic Ocean from Newfoundland to France. She had to land partway through her flight in Northern Ireland when she had problems with her plane 15 hours into the flight. On July 2nd, 1937, the US aviator and her navigator Fred Noonan flew over the Pacific Ocean and disappeared; the mystery of what happened to Earhart has continued until now. In 1940, people found a female skeleton on the island of Nikumaroro in the South Pacific that people now believe is likely Earhart. New forensic analysis suggests that she may have crash-landed and died.
+				</p>
+			</div>
+		</div>
+	</div>
+		
+	    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$("#header").load("Header.html");
+			$("#footer").load("footer.html");
+            document.getElementById("english").disabled = true;
+            document.getElementById("spanish").disabled = true;
+            document.getElementById("german").disabled = true;
+            document.getElementById("klingon").disabled = true;
+		});
+	</script>
+ </body>
+</html>
