@@ -1,24 +1,3 @@
-
-DROP TABLE knows_language;
-
-DROP TABLE rating;
-
-DROP TABLE translation;
-
-DROP TABLE sentence;
-
-DROP TABLE wanted_translations;
-
-DROP TABLE report;
-
-DROP TABLE report;
-
-DROP TABLE document;
-
-DROP TABLE language;
-
-DROP TABLE user;
-
 CREATE TABLE document
 (
 	id                   INTEGER NOT NULL,
