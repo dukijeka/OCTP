@@ -1,0 +1,126 @@
+ /* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 200px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+
+	color: #818181;
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	display: block;
+	
+}
+
+/* The navigation menu links */
+.sidenav a {
+    
+    //padding: 6px 8px 6px 16px;
+    //text-decoration: none;
+    //font-size: 25px;
+    //color: #818181;
+    //display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 0px 30px;
+    font-family: "Lato", sans-serif;
+    width: auto;
+    height: 60%;	// leave some space for translations
+    background-color: #10E0E0;
+    border: solid;
+    overflow: auto;
+    
+}
+
+.main p .goodtranslation {
+	background-color:#00FF00;
+}
+
+.main p .badtranslation {
+	background-color:#FF3333;
+}
+
+.main p .mediumtranslation {
+	background-color: #FFFF00;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+} 
+
+body {
+    
+}
+
+.translations {
+
+	margin-left: 200px; /* Same as the width of the sidebar */
+	margin-top: 1% ;
+    padding: 0px 30px;
+    width: auto;
+	height: auto; // 35%;
+	border: solid;
+	overflow: auto;
+
+}
+
+.translations table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.translations td, .translations th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.translations tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.translations .checked {
+    color: orange;
+}
+
+
+
+.sidenav button {
+    background-color: #555555;
+    border: none;
+    color: lightgray;
+    padding: 5px 16px;
+    border-radius: 4px; // add rounded corners
+    //border: 4px solid #999999;
+    border-style: solid;
+    border-color: #999999;
+    border-width: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.3s;
+}
+
+.sidenav button:hover {
+    background-color: #777777;
+}
+
+

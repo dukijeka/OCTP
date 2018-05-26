@@ -35,12 +35,17 @@ class User extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * @var array
      */
-    protected $fillable = ['username', 'password_hash', 'first_name', 'last_name', 'email', 'date_of_birth', 'date_joined', 'access_level', 'rating'];
+    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'date_of_birth', 'date_joined', 'rating'];
+    protected $guarded = ['password_hash', 'access_level'];
+    /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
