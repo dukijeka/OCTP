@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
+ * @property int $user_id
  * @property string $date
  * @property string $translation_text
- * @property int $user_id
  * @property int $language_id
  * @property float $average_rating
  * @property int $sentence_id
+ * @property User $user
+ * @property Rating[] $ratings
  */
 class Translation extends Model
 {
@@ -32,6 +34,21 @@ class Translation extends Model
     /**
      * @var array
      */
-    protected $fillable = ['date', 'translation_text', 'user_id', 'language_id', 'average_rating', 'sentence_id'];
+    protected $fillable = ['user_id', 'date', 'translation_text', 'language_id', 'average_rating', 'sentence_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
+    }
 }

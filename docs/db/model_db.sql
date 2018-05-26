@@ -1,155 +1,225 @@
-CREATE TABLE document
-(
-	id                   INTEGER NOT NULL,
-	posting_user_id      INTEGER NOT NULL,
-	date_created         DATE NULL,
-	language_id          INTEGER NOT NULL
-);
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 26, 2018 at 05:52 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.2.4
 
-ALTER TABLE document
-ADD CONSTRAINT XPKdocument PRIMARY KEY (id);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE knows_language
-(
-	user_id              INTEGER NOT NULL,
-	language_id          INTEGER NOT NULL
-);
 
-ALTER TABLE knows_language
-ADD CONSTRAINT XPKknows_language PRIMARY KEY (user_id,language_id);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE language
-(
-	id                   INTEGER NOT NULL,
-	name                 VARCHAR(15) NULL
-);
+--
+-- Database: `octp`
+--
 
-ALTER TABLE language
-ADD CONSTRAINT XPKlanguage PRIMARY KEY (id);
+-- --------------------------------------------------------
 
-CREATE TABLE rating
-(
-	user_id              INTEGER NOT NULL,
-	translation_id       INTEGER NOT NULL,
-	date                 DATE NULL,
-	rating_value         INTEGER NULL CHECK ( rating_value BETWEEN 1 AND 10 )
-);
+--
+-- Table structure for table `document`
+--
 
-ALTER TABLE rating
-ADD CONSTRAINT XPKrating PRIMARY KEY (user_id,translation_id);
+DROP TABLE IF EXISTS `document`;
+CREATE TABLE IF NOT EXISTS `document` (
+  `id` int(11) NOT NULL,
+  `posting_user_id` int(11) NOT NULL,
+  `date_created` date DEFAULT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `language_document` (`language_id`),
+  KEY `posting_user_id` (`posting_user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE report
-(
-	document_id          INTEGER NOT NULL,
-	user_id              INTEGER NOT NULL,
-	date                 DATE NULL,
-	explanation          VARCHAR(1000) NULL
-);
+-- --------------------------------------------------------
 
-ALTER TABLE report
-ADD CONSTRAINT XPKreport PRIMARY KEY (document_id,user_id);
+--
+-- Table structure for table `knows_language`
+--
 
-CREATE TABLE sentence
-(
-	id                   INTEGER NOT NULL,
-	text                 VARCHAR(500) NULL,
-	document_id          INTEGER NOT NULL
-);
+DROP TABLE IF EXISTS `knows_language`;
+CREATE TABLE IF NOT EXISTS `knows_language` (
+  `user_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`language_id`),
+  KEY `language_id` (`language_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE sentence
-ADD CONSTRAINT XPKsentence PRIMARY KEY (id);
+-- --------------------------------------------------------
 
-CREATE TABLE translation
-(
-	id                   INTEGER NOT NULL,
-	date                 DATE NULL,
-	translation_text     VARCHAR(500) NULL,
-	user_id              INTEGER NULL,
-	language_id          INTEGER NOT NULL,
-	average_rating       FLOAT NULL,
-	sentence_id          INTEGER NOT NULL
-);
+--
+-- Table structure for table `language`
+--
 
-ALTER TABLE translation
-ADD CONSTRAINT XPKtranslation PRIMARY KEY (id);
+DROP TABLE IF EXISTS `language`;
+CREATE TABLE IF NOT EXISTS `language` (
+  `id` int(11) NOT NULL,
+  `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE user
-(
-	id                   INTEGER NOT NULL,
-	username             VARCHAR(25) NULL,
-	password_hash        VARCHAR(256) NULL,
-	first_name           VARCHAR(25) NULL,
-	last_name            VARCHAR(35) NULL,
-	email                VARCHAR(50) NULL,
-	date_of_birth        DATE NULL,
-	date_joined          DATE NULL,
-	access_level         INTEGER NULL,
-	rating               FLOAT NULL
-);
+-- --------------------------------------------------------
 
-ALTER TABLE user
-ADD CONSTRAINT XPKuser PRIMARY KEY (id);
+--
+-- Table structure for table `rating`
+--
 
-CREATE TABLE wanted_translations
-(
-	document_id          INTEGER NOT NULL,
-	language_id          INTEGER NOT NULL
-);
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `user_id` int(11) NOT NULL,
+  `translation_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `rating_value` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`translation_id`),
+  KEY `translation_id` (`translation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE wanted_translations
-ADD CONSTRAINT XPKwanted_translations PRIMARY KEY (document_id,language_id);
+-- --------------------------------------------------------
 
-ALTER TABLE document
-ADD CONSTRAINT user_document FOREIGN KEY (posting_user_id) REFERENCES user (id)
-		ON DELETE CASCADE;
+--
+-- Table structure for table `report`
+--
 
-ALTER TABLE document
-ADD CONSTRAINT language_document FOREIGN KEY (language_id) REFERENCES language (id)
-		ON DELETE CASCADE;
+DROP TABLE IF EXISTS `report`;
+CREATE TABLE IF NOT EXISTS `report` (
+  `document_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `explanation` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`document_id`,`user_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE knows_language
-ADD CONSTRAINT user_knows_language FOREIGN KEY (user_id) REFERENCES user (id)
-		ON DELETE CASCADE;
+-- --------------------------------------------------------
 
-ALTER TABLE knows_language
-ADD CONSTRAINT language_knows_language FOREIGN KEY (language_id) REFERENCES language (id)
-		ON DELETE CASCADE;
+--
+-- Table structure for table `sentence`
+--
 
-ALTER TABLE rating
-ADD CONSTRAINT user_rating FOREIGN KEY (user_id) REFERENCES user (id)
-		ON DELETE CASCADE;
+DROP TABLE IF EXISTS `sentence`;
+CREATE TABLE IF NOT EXISTS `sentence` (
+  `id` int(11) NOT NULL,
+  `text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `document_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `document_id` (`document_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE rating
-ADD CONSTRAINT translation_rating FOREIGN KEY (translation_id) REFERENCES translation (id)
-		ON DELETE CASCADE;
+-- --------------------------------------------------------
 
-ALTER TABLE report
-ADD CONSTRAINT document_report FOREIGN KEY (document_id) REFERENCES document (id)
-		ON DELETE CASCADE;
+--
+-- Table structure for table `translation`
+--
 
-ALTER TABLE report
-ADD CONSTRAINT user_report FOREIGN KEY (user_id) REFERENCES user (id)
-		ON DELETE CASCADE;
+DROP TABLE IF EXISTS `translation`;
+CREATE TABLE IF NOT EXISTS `translation` (
+  `id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `translation_text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `language_id` int(11) NOT NULL,
+  `average_rating` float DEFAULT NULL,
+  `sentence_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `language_translation` (`language_id`),
+  KEY `R_17` (`sentence_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE sentence
-ADD CONSTRAINT document_sentence FOREIGN KEY (document_id) REFERENCES document (id)
-		ON DELETE CASCADE;
+-- --------------------------------------------------------
 
-ALTER TABLE translation
-ADD CONSTRAINT user_translation FOREIGN KEY (user_id) REFERENCES user (id);
+--
+-- Table structure for table `user`
+--
 
-ALTER TABLE translation
-ADD CONSTRAINT language_translation FOREIGN KEY (language_id) REFERENCES language (id)
-		ON DELETE CASCADE;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_hash` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(35) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `date_joined` date DEFAULT NULL,
+  `access_level` int(11) DEFAULT NULL,
+  `rating` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE translation
-ADD CONSTRAINT R_17 FOREIGN KEY (sentence_id) REFERENCES sentence (id)
-		ON DELETE CASCADE;
+-- --------------------------------------------------------
 
-ALTER TABLE wanted_translations
-ADD CONSTRAINT document_wanted_translations FOREIGN KEY (document_id) REFERENCES document (id)
-		ON DELETE CASCADE;
+--
+-- Table structure for table `wanted_translations`
+--
 
-ALTER TABLE wanted_translations
-ADD CONSTRAINT language_wanted_translations FOREIGN KEY (language_id) REFERENCES language (id)
-		ON DELETE CASCADE;
+DROP TABLE IF EXISTS `wanted_translations`;
+CREATE TABLE IF NOT EXISTS `wanted_translations` (
+  `document_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`document_id`,`language_id`),
+  KEY `language_id` (`language_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `document`
+--
+ALTER TABLE `document`
+  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`posting_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `knows_language`
+--
+ALTER TABLE `knows_language`
+  ADD CONSTRAINT `knows_language_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `knows_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`translation_id`) REFERENCES `translation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`document_id`) REFERENCES `document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sentence`
+--
+ALTER TABLE `sentence`
+  ADD CONSTRAINT `sentence_ibfk_1` FOREIGN KEY (`document_id`) REFERENCES `document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `translation`
+--
+ALTER TABLE `translation`
+  ADD CONSTRAINT `translation_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `wanted_translations`
+--
+ALTER TABLE `wanted_translations`
+  ADD CONSTRAINT `wanted_translations_ibfk_1` FOREIGN KEY (`document_id`) REFERENCES `document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wanted_translations_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

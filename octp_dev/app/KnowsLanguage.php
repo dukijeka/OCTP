@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $user_id
  * @property int $language_id
+ * @property User $user
+ * @property Language $language
  */
 class KnowsLanguage extends Model
 {
@@ -22,4 +24,19 @@ class KnowsLanguage extends Model
      */
     protected $fillable = [];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Language');
+    }
 }

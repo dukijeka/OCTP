@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $date_joined
  * @property int $access_level
  * @property float $rating
+ * @property Document[] $documents
+ * @property Language[] $languages
+ * @property Rating[] $ratings
+ * @property Report[] $reports
+ * @property Translation[] $translations
  */
 class User extends Model
 {
@@ -30,30 +35,50 @@ class User extends Model
      * 
      * @var bool
      */
-    public $incrementing = false;
+    protected $incrementing = false;
 
     /**
      * @var array
      */
     protected $fillable = ['username', 'password_hash', 'first_name', 'last_name', 'email', 'date_of_birth', 'date_joined', 'access_level', 'rating'];
 
-    public function Translations() {
-        return $this->hasMany('App\Post');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function documents()
+    {
+        return $this->hasMany('App\Document', 'posting_user_id');
     }
 
-    public function Rating() {
-        return $this->hasOne('App\Rating');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function languages()
+    {
+        return $this->belongsToMany('App\Language', 'knows_language');
     }
 
-    public function Reports() {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reports()
+    {
         return $this->hasMany('App\Report');
     }
 
-    public function Documents() {
-        return $this->hasMany('App\Document');
-    }
-
-    public function KnowsLanguages() {
-        return $this->hasMany('App\KnowsLanguage');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function translations()
+    {
+        return $this->hasMany('App\Translation');
     }
 }

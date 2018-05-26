@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property string $text
  * @property int $document_id
+ * @property string $text
+ * @property Document $document
  */
 class Sentence extends Model
 {
@@ -28,6 +29,13 @@ class Sentence extends Model
     /**
      * @var array
      */
-    protected $fillable = ['text', 'document_id'];
+    protected $fillable = ['document_id', 'text'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function document()
+    {
+        return $this->belongsTo('App\Document');
+    }
 }
