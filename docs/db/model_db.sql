@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `document`;
 CREATE TABLE IF NOT EXISTS `document` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `posting_user_id` int(11) NOT NULL,
   `date_created` date DEFAULT NULL,
   `language_id` int(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `knows_language` (
 
 DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `report` (
 
 DROP TABLE IF EXISTS `sentence`;
 CREATE TABLE IF NOT EXISTS `sentence` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `document_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `sentence` (
 
 DROP TABLE IF EXISTS `translation`;
 CREATE TABLE IF NOT EXISTS `translation` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
   `translation_text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `translation` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password_hash` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `first_name` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
