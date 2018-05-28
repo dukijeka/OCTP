@@ -77,7 +77,10 @@ class UsersController extends Controller
             }
             foreach($userLangNames as $userLangName) {
                 if (!in_array($userLangName, $selectedLanguages)) {
-                    //TODO: many to many brisanje
+                    $language = Language::where('name', $userLangName)->first();
+                    $knows_language = KnowsLanguage::where('user_id', $user->id)->
+                                                     where('language_id', $language->id);
+                    $knows_language->delete();
                 }
             }
             foreach($selectedLanguages as $selectedLangName) {
