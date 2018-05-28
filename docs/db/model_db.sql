@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `document` (
 
 DROP TABLE IF EXISTS `knows_language`;
 CREATE TABLE IF NOT EXISTS `knows_language` (
-  `user_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
+  `user_id` int(11),
+  `language_id` int(11),
   PRIMARY KEY (`user_id`,`language_id`),
   KEY `language_id` (`language_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

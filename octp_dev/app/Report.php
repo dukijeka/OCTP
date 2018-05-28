@@ -27,6 +27,11 @@ class Report extends Model
     protected $fillable = ['date', 'explanation'];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+        
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

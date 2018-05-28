@@ -27,6 +27,11 @@ class Rating extends Model
     protected $fillable = ['date', 'rating_value'];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+        
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function translation()

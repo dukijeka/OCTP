@@ -36,6 +36,11 @@ class Document extends Model
     protected $fillable = ['posting_user_id', 'date_created', 'language_id'];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+      
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

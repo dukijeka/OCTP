@@ -24,13 +24,18 @@ class Language extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * @var array
      */
     protected $fillable = ['name'];
 
+    /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

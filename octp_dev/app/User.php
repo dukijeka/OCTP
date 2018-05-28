@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 /**
  * @property int $id
@@ -21,8 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Report[] $reports
  * @property Translation[] $translations
  */
-class User extends Model
+class User extends Model implements Authenticatable
 {
+
+    use AuthenticableTrait;
     /**
      * The table associated with the model.
      * 
@@ -40,8 +44,15 @@ class User extends Model
     /**
      * @var array
      */
-    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'date_of_birth', 'date_joined', 'rating'];
-    protected $guarded = ['password_hash', 'access_level'];
+    protected $fillable = ['username',
+                           'first_name', 
+                           'last_name', 
+                           'email', 
+                           'password_hash', 
+                           'date_of_birth', 
+                           'date_joined', 
+                           'access_level', 
+                           'rating'];
     /**
      * Disable timestamps
      */

@@ -15,6 +15,4 @@ Route::get('/', 'TestController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/Register', 'RegisterController@index');
-
-Route::post('/Register', 'RegisterController@register');
+Auth::routes();

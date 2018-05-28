@@ -19,12 +19,12 @@
             </a>
         </li>
         <li style="float:right" class="dropdown">
-            <a href="/Register" class="dropbtn">
+            <a href="/login" class="dropbtn">
                 Login
             </a>
         </li>
         <li style="float:right" class="dropdown">
-            <a href="/Login" class="dropbtn">
+            <a href="/register" class="dropbtn">
                 Register
             </a>
         </li>

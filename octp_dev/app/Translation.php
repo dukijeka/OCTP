@@ -37,6 +37,11 @@ class Translation extends Model
     protected $fillable = ['user_id', 'date', 'translation_text', 'language_id', 'average_rating', 'sentence_id'];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+      
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
