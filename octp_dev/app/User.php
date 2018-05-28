@@ -97,4 +97,11 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany('App\Translation');
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthPassword() {
+        return $this->password_hash;
+    }
 }
