@@ -20,7 +20,7 @@
         </li>
         @if (Auth::check())
             <li style="float:right">
-                <a href="MyProfile.html">
+                <a href="{{ url('user/'.Auth::id()) }}">
                     My Profile
                 </a>
             </li>
