@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TestController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::resource('user', 
+                'UsersController', 
+                ['only' => ['show', 
+                            'edit', 
+                            'update', 
+                            'destroy']])->middleware('auth');

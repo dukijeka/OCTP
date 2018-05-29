@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $name
+ * @property User[] $users
+ * @property Document[] $documents
  */
 class Language extends Model
 {
@@ -22,11 +24,31 @@ class Language extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * @var array
      */
     protected $fillable = ['name'];
 
+    /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'knows_language');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function documents()
+    {
+        return $this->belongsToMany('App\Document', 'wanted_translations');
+    }
 }

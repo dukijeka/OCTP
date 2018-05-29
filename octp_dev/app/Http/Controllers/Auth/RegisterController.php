@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\KnowsLanguage;
+use App\Language;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -48,11 +53,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'dob.required' => 'The date of birth is required'
+        ];
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
+            'username' => 'required|unique:user',
+            'email' => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|confirmed',
+            'dob' => 'required'], $messages);
     }
 
     /**
@@ -63,10 +73,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'username' => $data['username'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password_hash' => Hash::make($data['password']),
+            'date_of_birth' => $data['dob'],
+            'date_joined' => Carbon::now(),
+            'access_level' => 1,
+            'rating' => 0
         ]);
+        $knows_language = new KnowsLanguage();
+        $language = Language::where('name', $data['nativelanguage'])->first();
+        $user = User::where('username', $user->username)->first();
+        $knows_language->user()->associate($user);
+        $knows_language->language()->associate($language);
+        $knows_language->save();
+        return $user;
     }
 }
