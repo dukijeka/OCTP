@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Comment\Doc;
 
-class DocumentController extends Controller
+class DocumentsController extends Controller
 {
     /**
      * Display a listing of the resource.
