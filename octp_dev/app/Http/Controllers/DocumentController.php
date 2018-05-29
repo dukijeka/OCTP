@@ -15,8 +15,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        // TODO: display all documents
-
+        return $this->showAll();
     }
 
     /**
@@ -28,11 +27,10 @@ class DocumentController extends Controller
     {
 
         if(!Auth::check()) {
-            return back()->withErrors(['You must be logged in to create new document']);
+        //    return back()->withErrors(['You must be logged in to create new document']);
         }
 
-        // TODO: display form for uploading document
-
+        return view('document.upload');
     }
 
     /**
@@ -61,8 +59,6 @@ class DocumentController extends Controller
      * Display all documents.
      */
     public function showAll() {
-
-        //return redirect("/fafsfregregr/");
 
         $allDocs = Document::all();
 
