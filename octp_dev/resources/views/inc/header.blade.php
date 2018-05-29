@@ -4,17 +4,17 @@
 <div class = "meni">
     <ul>
         <li>
-            <a href="index.html">
+            <a href="/home">
                 Home
             </a>
         </li>
         <li>
-            <a href="About Us.html" class="dropbtn" target = "_blank">
+            <a href="About Us.html" class="dropbtn">
                 About Us
             </a>
         </li>
         <li>
-            <a href="View documents.html" class="dropbtn" target = "_blank">
+            <a href="/document/showAll" class="dropbtn">
                 View documents
             </a>
         </li>

@@ -58,6 +58,18 @@ class DocumentController extends Controller
     }
 
     /**
+     * Display all documents.
+     */
+    public function showAll() {
+
+        //return redirect("/fafsfregregr/");
+
+        $allDocs = Document::all();
+
+        return view('document.showall')->with('docs', $allDocs);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Document  $document

@@ -23,3 +23,9 @@ Route::resource('user',
                             'edit', 
                             'update', 
                             'destroy']])->middleware('auth');
+
+Route::get('/document/showAll', 'DocumentController@showAll');
+
+Route::resource('document', 'DocumentController');
+
+
