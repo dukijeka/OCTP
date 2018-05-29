@@ -25,18 +25,24 @@
 
     <div class="container">
         <label> <b>Contributed to: </b></label> <br />
+
         <hr />
+
         <ul class="list-group">
             @foreach ($user->documents as $document)
                 <li class="list-group-item">
                 </li>
             @endforeach
         </ul>
-    <a href="{{ url('user/'.$user->id.'/edit') }}" class = "dropbtn"><button type = "button">Edit My Profile</button></a>
-        <a href="upload.html"><button type = "button"  class = "uplbtn">Upload new document</button></a>
+
+        <a href="{{ url('user/'.$user->id.'/edit') }}" class = "dropbtn"><button type = "button">Edit My Profile</button></a>
+
+        <a href="/document/create"><button type = "button"  class = "uplbtn">Upload new document</button></a>
     </div>
+
     <div class="container" style="background-color:#f1f1f1">
-        <a href="View%20documents.html" class="dropbtn" target = "_blank"><button type="button" class="cancelbtn">Cancel</button></a>
+
     </div>
+
   </form> 
 @endsection
