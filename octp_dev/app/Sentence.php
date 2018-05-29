@@ -32,6 +32,11 @@ class Sentence extends Model
     protected $fillable = ['document_id', 'text'];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+        
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function document()

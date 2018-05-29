@@ -28,13 +28,18 @@ class Document extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * @var array
      */
     protected $fillable = ['posting_user_id', 'date_created', 'language_id'];
 
+    /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+      
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

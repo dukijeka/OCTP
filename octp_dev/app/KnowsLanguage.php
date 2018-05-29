@@ -25,6 +25,11 @@ class KnowsLanguage extends Model
     protected $fillable = [];
 
     /**
+     * Disable timestamps
+     */
+    public $timestamps = false;
+        
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

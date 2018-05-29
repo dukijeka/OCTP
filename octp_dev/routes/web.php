@@ -15,6 +15,11 @@ Route::get('/', 'TestController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/Register', 'RegisterController@index');
+Auth::routes();
 
-Route::post('/Register', 'RegisterController@register');
+Route::resource('user', 
+                'UsersController', 
+                ['only' => ['show', 
+                            'edit', 
+                            'update', 
+                            'destroy']])->middleware('auth');

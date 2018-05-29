@@ -34,14 +34,6 @@
                 <input id="pwdrepeat" type="password" name="password_confirmation">
             </p>
             <p>
-                Gender
-                <br>
-                <label for="gendermale">Male</label>
-                <input id="gendermale" type="radio" name="gender" value="m">
-                <label for="genderfemale">Female</label>
-                <input for="genderfemale" type="radio" name="gender" value="f">
-            </p>
-            <p>
                 <label for="dob">Date of birth</label>
                 <input id="dob" type="date" name="dob">
             </p>

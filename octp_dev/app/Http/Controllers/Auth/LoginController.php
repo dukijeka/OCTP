@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,31 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Check username or email
+     * @return string
+     */
+    public function username() {
+        $identity = request()->get('identity');
+        $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        request()->merge([$fieldName => $identity]);
+        return $fieldName;
+    }
+
+    /**
+     * Validate the credentials
+     * @param Illuminate\Http\Request $request
+     */
+    public function validateLogin(Request $request) {
+        $messages = [
+            'identity.required' => 'Username or email is required',
+            'password.required' => 'Password is required'
+        ];
+        $this->validate($request, [
+                        'identity' => 'required|string',
+                        'password' => 'required|string'
+                        ], $messages);
     }
 }
