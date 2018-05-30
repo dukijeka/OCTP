@@ -100,6 +100,15 @@ class DocumentsController extends Controller
 
         // everything is ok, create new document
 
+        if($choice == 'typeChoice1') {
+            // uploading document as file
+
+        } else if($choice == 'typeChoice2') {
+            // uploading document as text
+            //info($data);
+            $this->addSentencesToDatabase($data['text']);
+        }
+
         $srcLanguage = Language::all()->where('name', $data['srclanguage'])->first();
         $destLanguage = Language::all()->where('name', $data['dstlanguage'])->first();
 
@@ -109,6 +118,7 @@ class DocumentsController extends Controller
         $document->posting_user_id = Auth::id();
 
         // TODO: where to save text or file ? => we have to split it into sentences and add them to db
+
         // TODO: document table has no column for document name
 
         $document->save();
@@ -176,5 +186,13 @@ class DocumentsController extends Controller
     public function destroy(Document $document)
     {
         //
+    }
+
+    public function addSentencesToDatabase($text) {
+        //info("testlogssdkf");
+        $sentences = explode(".", $text);
+        foreach ($sentences as $sentence) {
+            info($sentence);
+        }
     }
 }
