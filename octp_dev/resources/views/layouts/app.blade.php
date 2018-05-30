@@ -21,6 +21,12 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- JQuery -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
+    <!-- JQuery-confirm -->
+    <link href="{{ asset('css/jquery-confirm.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-confirm.min.js') }}" rel="stylesheet"></script>
 </head>
 <body>
     <div id="app">
@@ -28,6 +34,7 @@
         <main class="py-4">
             @include('inc.messages')
             @yield('content')
+            @yield('script')
         </main>
     </div>
 </body>
