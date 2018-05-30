@@ -165,15 +165,11 @@ class UsersController extends Controller
             $user = User::find($id);
             $user->delete();
             //return redirect('/home');
-            return response()->json([
-                'success' => 'Account deleted'
-            ]);
+            return response()->json(['success' => 'Deleted!']);
         }
         else {
             //return redirect('/home')->withErrors(['You can only delete you own account']);
-            return response()->json([
-                'error' => 'Failed'
-            ]);
+            return response()->json(['error' => 'You can only delete your own account']);
         }
     }
 

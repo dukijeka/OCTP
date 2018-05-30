@@ -56,14 +56,14 @@
 
         </div>
 </form>
-<form id="deleteForm">
+<form method="post" action="{{ url('user/'.$user->id) }}" id="deleteForm">
     @csrf
     @method('delete')
         <div class="container">
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
 
-            <button type="button" id="deleteButton" class="deleteBtn btn btn-danger">Delete Your Account</button>
+        <button type="button" id="deleteButton" data-id="{{ $user->id }}" data-token={{ csrf_token() }} class="deleteBtn btn btn-danger">Delete Your Account</button>
         </div>
 </form>
 @endsection
@@ -86,6 +86,26 @@
                         text: 'Delete',
                         btnClass: 'btn-danger',
                         action: function() {
+                            var id = $('.deleteBtn').data('id');
+                            var token = $('.deleteBtn').data('token');
+                            console.log("id = " + id + " token = " + token);
+                            jQuery.ajax(
+                                {
+                                    url: "{{ route("user.destroy", $user->id)}}",
+                                    type: 'DELETE',
+                                    dataType: 'JSON',
+                                    data: {
+                                        'id': id,
+                                        '_method': "DELETE",
+                                        '_token': token,
+                                    },
+                                    success: function(data) {
+                                        if (data.hasOwnProperty('success')) {
+                                            location.reload();
+                                        }
+                                    },
+                                }
+                            );
                         }
                     },
                     cancelAction: {
