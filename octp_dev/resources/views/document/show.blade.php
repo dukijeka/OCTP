@@ -13,7 +13,7 @@
 
                 Document name:
                 <br>
-                <strong></strong>
+                <strong>{{$doc->title()}}</strong>
                 <br>
                 <br>
 
@@ -25,7 +25,7 @@
 
                 Language requested:
                 <br>
-                <strong>{{$doc->languages()->first()->name}}</strong>
+                <strong>{{$doc->wantedLanguageName()}}</strong>
                 <br>
                 <br>
 
@@ -42,14 +42,6 @@
                 <br>
 
 
-                <!--
-              <a href="#">About</a>
-              <a href="#">Services</a>
-              <a href="#">Clients</a>
-              <a href="#">Contact</a>
-                  -->
-
-
                 <button onclick="reportDocument()">Report</button>
 
 
@@ -59,7 +51,7 @@
 
             <div class="main">
 
-                <p><strong>Lorem ipsum</strong></p>
+                <p><strong>{{$doc->title()}}</strong></p>
 
                 <p>
 
