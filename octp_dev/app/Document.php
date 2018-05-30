@@ -28,12 +28,12 @@ class Document extends Model
      * 
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * @var array
      */
-    protected $fillable = ['posting_user_id', 'date_created', 'language_id'];
+    protected $fillable = ['posting_user_id', 'date_created', 'language_id', 'id'];
 
     /**
      * Disable timestamps
@@ -71,4 +71,9 @@ class Document extends Model
     {
         return $this->belongsToMany('App\Language', 'wanted_translations');
     }
+
+    public function srcLanguage() {
+        return Language::find($this->language_id);
+    }
+
 }
