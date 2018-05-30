@@ -71,4 +71,9 @@ class Document extends Model
     {
         return $this->belongsToMany('App\Language', 'wanted_translations');
     }
+
+    public function srcLanguage() {
+        return Language::find($this->language_id);
+    }
+
 }
