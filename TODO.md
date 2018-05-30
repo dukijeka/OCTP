@@ -4,10 +4,9 @@
 
 **Priority**
 
-- login
-
 - MVC for documents - we need document uploading before anything else (translations, ratings, etc)
 
+- when uploading new document, add multiple required languages
 
 
 **Optional**

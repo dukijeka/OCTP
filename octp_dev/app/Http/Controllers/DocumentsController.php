@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Language;
+use App\WantedTranslations;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,9 +100,12 @@ class DocumentsController extends Controller
 
         // everything is ok, create new document
 
+        $srcLanguage = Language::all()->where('name', $data['srclanguage'])->first();
+        $destLanguage = Language::all()->where('name', $data['dstlanguage'])->first();
+
         $document = new Document();
         $document->date_created = Carbon::now();
-        $document->language_id = Language::all()->where('name', $data['srclanguage'])->first();
+        $document->language_id = $srcLanguage->id;
         $document->posting_user_id = Auth::id();
 
         // TODO: where to save text or file ? => we have to split it into sentences and add them to db
@@ -109,7 +113,11 @@ class DocumentsController extends Controller
 
         $document->save();
 
-        // TODO: create wanted translations in db
+        // create wanted translations in db
+        $wantedTranslations = new WantedTranslations();
+        $wantedTranslations->document()->associate($document);
+        $wantedTranslations->language()->associate($destLanguage);
+        $wantedTranslations->save();
 
         // TODO: display message to the user
         return redirect("/document/show/" . $document->id);
