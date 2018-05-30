@@ -28,12 +28,12 @@ class Document extends Model
      * 
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * @var array
      */
-    protected $fillable = ['posting_user_id', 'date_created', 'language_id'];
+    protected $fillable = ['posting_user_id', 'date_created', 'language_id', 'id'];
 
     /**
      * Disable timestamps
