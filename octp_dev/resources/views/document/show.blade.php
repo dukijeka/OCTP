@@ -13,7 +13,7 @@
 
                 Document name:
                 <br>
-                <strong>Lorem ipsum</strong>
+                <strong></strong>
                 <br>
                 <br>
 
@@ -25,19 +25,19 @@
 
                 Language requested:
                 <br>
-                <strong>{{$doc->languages()[0]->name}}</strong>
+                <strong>{{$doc->languages()->first()->name}}</strong>
                 <br>
                 <br>
 
                 <span>Uploaded by:</span>
                 <br>
-                <strong>{{$doc->user()->first_name}}</strong>
+                <strong>{{$doc->user->first_name}}</strong>
                 <br>
                 <br>
 
                 <span>Date:</span>
                 <br>
-                <strong>30 Mar 2018</strong>
+                <strong>{{$doc->date_created}}</strong>
                 <br>
                 <br>
 
@@ -60,6 +60,13 @@
             <div class="main">
 
                 <p><strong>Lorem ipsum</strong></p>
+
+                <p>
+
+                    
+
+                </p>
+
 
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <span class="mediumtranslation"> Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</span> Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
 
