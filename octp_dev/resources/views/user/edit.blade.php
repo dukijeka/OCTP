@@ -59,8 +59,8 @@
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
 
-            <button id="deleteButton" onclick="confirmDeletion();">Delete Your Account</button>
-
+            <button type="button" id="deleteButton" class="btn btn-danger">Delete Your Account</button>
+            <input type="hidden" id="deleteLink" value="{{ route('user.destroy', $user->id) }}" />
         </div>
 </form>
 @endsection

@@ -63,40 +63,45 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'language' => 'required'
-        ], ['You must select at least one language']);
-        if ($this->validateUpdate($request->all())) {
-            $user = User::find($id);
-            $user->first_name = $request->input('firstName');
-            $user->last_name = $request->input('lastName');
-            $selectedLanguages = $request->get('language');
-            $userLangNames = [];
-            foreach ($user->languages as $language) {
-                $userLangNames[] = $language->name;
-            }
-            foreach($userLangNames as $userLangName) {
-                if (!in_array($userLangName, $selectedLanguages)) {
-                    $language = Language::where('name', $userLangName)->first();
-                    $knows_language = KnowsLanguage::where('user_id', $user->id)->
-                                                     where('language_id', $language->id);
-                    $knows_language->delete();
+        if ($id == Auth::id()) {
+            $this->validate($request, [
+                'language' => 'required'
+            ], ['You must select at least one language']);
+            if ($this->validateUpdate($request->all())) {
+                $user = User::find($id);
+                $user->first_name = $request->input('firstName');
+                $user->last_name = $request->input('lastName');
+                $selectedLanguages = $request->get('language');
+                $userLangNames = [];
+                foreach ($user->languages as $language) {
+                    $userLangNames[] = $language->name;
                 }
-            }
-            foreach($selectedLanguages as $selectedLangName) {
-                if (!in_array($selectedLangName, $userLangNames)) {
-                    $knows_language = new KnowsLanguage();
-                    $language = Language::where('name', $selectedLangName)->first();
-                    $knows_language->user()->associate($user);
-                    $knows_language->language()->associate($language);
-                    $knows_language->save();
+                foreach($userLangNames as $userLangName) {
+                    if (!in_array($userLangName, $selectedLanguages)) {
+                        $language = Language::where('name', $userLangName)->first();
+                        $knows_language = KnowsLanguage::where('user_id', $user->id)->
+                                                        where('language_id', $language->id);
+                        $knows_language->delete();
+                    }
                 }
+                foreach($selectedLanguages as $selectedLangName) {
+                    if (!in_array($selectedLangName, $userLangNames)) {
+                        $knows_language = new KnowsLanguage();
+                        $language = Language::where('name', $selectedLangName)->first();
+                        $knows_language->user()->associate($user);
+                        $knows_language->language()->associate($language);
+                        $knows_language->save();
+                    }
+                }
+                $user->save();
+                return redirect('user/'.$user->id);
             }
-            $user->save();
-            return redirect('user/'.$user->id);
+            else {
+                return back()->withErrors();
+            }
         }
         else {
-            return back()->withErrors();
+            return back()->withErrors(['You can only edit your own profile']);
         }
     }
 
