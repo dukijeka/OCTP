@@ -6,7 +6,7 @@
 
         <div class="container">
 
-            <form action="/document/store" method="GET">
+            <form action="/document/store" method="post">
 
                 <h1>Document upload</h1>
 
@@ -20,7 +20,8 @@
                     <input type="radio" id="typeChoice2" name="typeChoice" value="typeChoice2">
                 </p>
 
-                <input type="file" id="file">
+                {{ csrf_field() }}
+                <input type="file" name="file">
 
                 <textarea id="text" name="text" cols="60" rows="20"></textarea>
 
