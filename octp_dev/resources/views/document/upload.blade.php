@@ -15,12 +15,13 @@
                     <input type="radio" id="typeChoice1" name="typeChoice" checked>
                 </p>
 
+                <input type="file" id="file">
+
                 <p>
                     <label for="typeChoice2">Text</label>
                     <input type="radio" id="typeChoice2" name="typeChoice">
                 </p>
 
-                <input type="file" id="file">
 
                 <textarea id="text" cols="60" rows="20"></textarea>
 
