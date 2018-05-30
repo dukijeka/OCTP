@@ -127,6 +127,9 @@ class DocumentsController extends Controller
 
         if($choice == 'typeChoice1') {
             // uploading document as file
+            $file = $request->file('file');
+
+            info("uploadedFile: " . $file);
 
         } else if($choice == 'typeChoice2') {
             // uploading document as text
