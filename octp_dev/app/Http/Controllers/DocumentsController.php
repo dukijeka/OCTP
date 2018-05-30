@@ -144,9 +144,9 @@ class DocumentsController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show(Document $document)
+    public function show($id)
     {
-        //
+        return view("document.show")->with(['doc' => Document::findOrFail($id)]);
     }
 
     /**
