@@ -117,13 +117,13 @@ class UsersController extends Controller implements CanResetPasswordContract
                 'newpass' => 'required|string|confirmed'
             ], $messages);
             $user = User::find($id);
-            if (!Hash::check($request->input('pass'), $user->password_hash)) {
+            if (!Hash::check($request->input('pass'), $user->password)) {
                 return back()->withErrors(['Wrong password']);
             }
             if ($request->input('pass') == $request->input('newpass')) {
                 return back()->withErrors(['New password must be different from the old password']);
             }
-            $user->password_hash = Hash::make($request->input('newpass'));
+            $user->password = Hash::make($request->input('newpass'));
             $user->save();
             return redirect('user/'.$user->id)->withSuccess('Password updated!');
         }

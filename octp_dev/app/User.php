@@ -51,7 +51,7 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
                            'first_name', 
                            'last_name', 
                            'email', 
-                           'password_hash', 
+                           'password', 
                            'date_of_birth', 
                            'date_joined', 
                            'access_level', 
@@ -101,10 +101,10 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
         return $this->hasMany('App\Translation');
     }
 
-    /**
-     * @return string
-     */
-    public function getAuthPassword() {
-        return $this->password_hash;
-    }
+    // /**
+    //  * @return string
+    //  */
+    // public function getAuthPassword() {
+    //     return $this->password_hash;
+    // }
 }
