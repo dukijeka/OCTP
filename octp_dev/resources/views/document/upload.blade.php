@@ -6,28 +6,27 @@
 
         <div class="container">
 
-            <form action="/document/store" method="POST">
+            <form action="/document/store" method="GET">
 
                 <h1>Document upload</h1>
 
                 <p>
                     <label for="typeChoice1">File</label>
-                    <input type="radio" id="typeChoice1" name="typeChoice" checked>
+                    <input type="radio" id="typeChoice1" name="typeChoice" value="typeChoice1" checked>
+                </p>
+
+                <p>
+                    <label for="typeChoice2">Text</label>
+                    <input type="radio" id="typeChoice2" name="typeChoice" value="typeChoice2">
                 </p>
 
                 <input type="file" id="file">
 
-                <p>
-                    <label for="typeChoice2">Text</label>
-                    <input type="radio" id="typeChoice2" name="typeChoice">
-                </p>
-
-
-                <textarea id="text" cols="60" rows="20"></textarea>
+                <textarea id="text" name="text" cols="60" rows="20"></textarea>
 
                 <p>
                     Document name
-                    <input type="text" id="documentName">
+                    <input type="text" id="documentName" name="documentName">
                 </p>
 
                 <p>
