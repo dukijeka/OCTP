@@ -49,21 +49,71 @@
         <div class="container">
             <label> <b>Here you can change your email </b></label> <br />
             <hr />
-            <label for="email"><b>*New Email</b></label>
+            <label for="email"><b>New Email</b></label>
             <input type="text" placeholder="Email" name="email" required>
 
             <button type="submit">Save changes</button>
 
         </div>
 </form>
-<form>
+<form method="post" action="{{ url('user/'.$user->id) }}" id="deleteForm">
     @csrf
     @method('delete')
         <div class="container">
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
 
-            <button id="deleteButton" class="deleteBtn btn btn-danger">Delete Your Account</button>
+        <button type="button" id="deleteButton" data-id="{{ $user->id }}" data-token={{ csrf_token() }} class="deleteBtn btn btn-danger">Delete Your Account</button>
         </div>
 </form>
+@endsection
+
+@section('script')
+<script>
+    var $executed = false; //odvratan hack da bi radilo svaki put
+    $(document).ready(function() { //sacekaj da se ucita ceo dokument
+        $('.deleteBtn').on('click', function() {
+            if (!$executed) {
+                $.noConflict(); //ne radi bez ovoga (sme da se izvrsi samo jednom inace ne zna sta je $)
+                $executed = true;
+            }
+            $.confirm({
+                title: 'Delete your account?',
+                content: 'This action cannot be reverted',
+                autoClose: 'cancelAction|5000',
+                buttons: {
+                    deleteUser: {
+                        text: 'Delete',
+                        btnClass: 'btn-danger',
+                        action: function() {
+                            var id = $('.deleteBtn').data('id');
+                            var token = $('.deleteBtn').data('token');
+                            console.log("id = " + id + " token = " + token);
+                            jQuery.ajax(
+                                {
+                                    url: "{{ route("user.destroy", $user->id)}}",
+                                    type: 'DELETE',
+                                    dataType: 'JSON',
+                                    data: {
+                                        'id': id,
+                                        '_method': "DELETE",
+                                        '_token': token,
+                                    },
+                                    success: function(data) {
+                                        if (data.hasOwnProperty('success')) {
+                                            location.reload();
+                                        }
+                                    },
+                                }
+                            );
+                        }
+                    },
+                    cancelAction: {
+                        text: 'Cancel',
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection

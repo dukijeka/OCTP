@@ -27,7 +27,7 @@ class UsersController extends Controller
             return view('user.show')->with('user', $user);
         }
         else {
-            return back()->withErrors(['You can only view your own profile']);
+            return redirect('/home')->withErrors(['You can only view your own profile']);
         }
     }
 
@@ -51,7 +51,7 @@ class UsersController extends Controller
                                             'languages' => $languages]);
         }
         else {
-            return back()->withErrors(['You can only edit your own profile']);
+            return redirect('/home')->withErrors(['You can only edit your own profile']);
         }
     }
 
@@ -102,7 +102,7 @@ class UsersController extends Controller
             }
         }
         else {
-            return back()->withErrors(['You can only edit your own profile']);
+            return redirect('/home')->withErrors(['You can only edit your own profile']);
         }
     }
 
@@ -129,7 +129,7 @@ class UsersController extends Controller
             return redirect('user/'.$user->id)->withSuccess('Password updated!');
         }
         else {
-            return back()->withErrors(['You can only edit your own account']);
+            return redirect('/home')->withErrors(['You can only edit your own account']);
         }
     }
 
@@ -149,7 +149,7 @@ class UsersController extends Controller
             }
         }
         else {
-            return back()->withErrors(['You can only edit your own account']);
+            return redirect('/home')->withErrors(['You can only edit your own account']);
         }
     }
 
@@ -164,10 +164,12 @@ class UsersController extends Controller
         if ($id == Auth::id()) {
             $user = User::find($id);
             $user->delete();
-            return redirect('/home');
+            //return redirect('/home');
+            return response()->json(['success' => 'Deleted!']);
         }
         else {
-            return back()->withErrors(['You can only delete you own account']);
+            //return redirect('/home')->withErrors(['You can only delete you own account']);
+            return response()->json(['error' => 'You can only delete your own account']);
         }
     }
 
