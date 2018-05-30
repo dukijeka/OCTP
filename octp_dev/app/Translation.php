@@ -29,7 +29,7 @@ class Translation extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = true;
 
     /**
      * @var array

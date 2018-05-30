@@ -31,7 +31,7 @@ Route::get('/document/showAll', 'DocumentsController@showAll');
 
 //Route::resource('document', 'DocumentsController');
 Route::get('/document/create', 'DocumentsController@create');
-Route::get('/document/store', 'DocumentsController@store');
+Route::post('/document/store', 'DocumentsController@store');
 Route::get('/document/show/{id}', 'DocumentsController@show');
 //Route::get('/document/showAll', 'DocumentsController@showAll');
 Route::get('/document/edit', 'DocumentsController@edit');
