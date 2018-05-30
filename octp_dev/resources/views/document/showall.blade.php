@@ -29,12 +29,17 @@
         <div id="text">
 
             @foreach ($docs as $doc)
-                <div class="docum" data-from = "{{$doc->srcLanguage()->name}}" data-to = "" date-added="{{$doc->date_created}}">
-                    <div class="title"></div>
+                <div class="docum" data-from = "{{$doc->srcLanguage()->name}}" data-to = "{{$doc->wantedLanguageName()}}" date-added="{{$doc->date_created}}">
+
+                    <div class="title">
+                        <a href="/document/show/{{$doc->id}}">{{$doc->title()}}</a>
+                    </div>
+
                     <div class="fromto">
                         <div class="tfrom">From: {{$doc->srcLanguage()->name}}</div>
-                        <div class="tto">To: </div>
+                        <div class="tto">To: {{$doc->wantedLanguageName()}}</div>
                     </div>
+
                     <div class="tekst">
                         <hr>
                         <p>

@@ -76,4 +76,15 @@ class Document extends Model
         return Language::find($this->language_id);
     }
 
+    public function wantedLanguageName() {
+        $lang = $this->languages()->first();
+        if($lang != null)
+            return $lang->name;
+        return "";
+    }
+
+    public function title() {
+        return "";
+    }
+
 }
