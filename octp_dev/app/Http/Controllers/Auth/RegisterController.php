@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'last_name' => $data['lastName'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'password_hash' => Hash::make($data['password']),
+            'password' => Hash::make($data['password']),
             'date_of_birth' => $data['dob'],
             'date_joined' => Carbon::now(),
             'access_level' => 1,
