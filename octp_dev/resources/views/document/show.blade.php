@@ -83,79 +83,40 @@
                         <th style="min-width:100px">My rating</th>
                     </tr>
 
-                    @foreach ($doc->sentences() as $sentence)
+                    @foreach ($doc->sentences as $sentence)
 
-                        @ $translation = \App\Translation::find(['sentence_id' => $sentence->id]);
-                        @ info($translation->translation_text);
+                        @php
+                            $allTranslations = \App\Translation::find(['sentence_id' => $sentence->id]);
+                        @endphp
 
-                        <tr>
+                        @foreach ($allTranslations as $translation)
 
-                            <td>{{$sentence->text}}</td>
-                            <td>{{$translation->translation_text}}</td>
-                            <td>{{$translation->average_rating}}</td>
-                            <td>{{$translation->ratings()->where(['user_id' => Auth::id()])}}</td>
+                            <tr>
 
-                        </tr>
+                                <td>{{$sentence->text}}</td>
 
+                                <td>{{$translation->translation_text}}</td>
+
+                                <td>
+                                    @php
+                                        $averageRating = (int) $translation->average_rating ;
+                                        RatingHelper::displayRatingStars($averageRating);
+                                    @endphp
+                                </td>
+
+                                <td>
+                                    @php
+                                    $myRating = $translation->ratings()->where(['user_id' => Auth::id()])->first();
+                                    if($myRating != null) {
+                                        RatingHelper::displayRatingStars($myRating->rating_value);
+                                    }
+                                    @endphp
+                                </td>
+
+                            </tr>
+
+                        @endforeach
                     @endforeach
-
-                    <tr>
-                        <td>Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</td>
-                        <td></td>
-                        <td>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Nam pretium turpis et arcu.</td>
-                        <td></td>
-                        <td>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td>Phasellus ullamcorper ipsum rutrum nunc.</td>
-                        <td></td>
-                        <td>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</td>
-                        <td></td>
-                        <td>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td></td>
-                    </tr>
 
                 </table>
 
