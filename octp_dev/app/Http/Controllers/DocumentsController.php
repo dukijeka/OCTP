@@ -123,6 +123,8 @@ class DocumentsController extends Controller
 
         $document->save();
 
+        info("inserted document: " . $document->id);
+
         // create wanted translations in db
         $wantedTranslations = new WantedTranslations();
         $wantedTranslations->document()->associate($document);
