@@ -26,7 +26,8 @@
 
         </div>
 </form>
-<form>
+<form method="post" action="{{ url('user/changepass/'.$user->id) }}">
+        @csrf
         <div class="container">
             <label> <b>Here you can change your passowrd </b></label> <br />
             <hr />
@@ -37,30 +38,32 @@
             <input type="password" placeholder="New Password" name="newpass" required>
 
             <label for="rnewpass"><b>*Retype new password</b></label>
-            <input type="password" placeholder="Retype new password" name="rnewpass" required>
+            <input type="password" placeholder="Retype new password" name="newpass_confirmation" required>
 
             <button type="submit">Save changes</button>
 
         </div>
 </form>
-<form>
+<form method="post" action="{{ url('user/changeemail/'.$user->id) }}">
+    @csrf
         <div class="container">
             <label> <b>Here you can change your email </b></label> <br />
             <hr />
             <label for="email"><b>*New Email</b></label>
-            <input type="email" placeholder="Email" name="email" required>
+            <input type="text" placeholder="Email" name="email" required>
 
             <button type="submit">Save changes</button>
 
         </div>
 </form>
 <form>
+    @csrf
+    @method('delete')
         <div class="container">
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
 
-            <button type="button" id="deleteButton" class="btn btn-danger">Delete Your Account</button>
-            <input type="hidden" id="deleteLink" value="{{ route('user.destroy', $user->id) }}" />
+            <button id="deleteButton" class="deleteBtn btn btn-danger">Delete Your Account</button>
         </div>
 </form>
 @endsection

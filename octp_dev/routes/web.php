@@ -24,6 +24,9 @@ Route::resource('user',
                             'update', 
                             'destroy']])->middleware('auth');
 
+Route::post('user/changepass/{id}', 'UsersController@changePass');
+Route::post('user/changeemail/{id}', 'UsersController@changeEmail');
+
 Route::get('/document/showAll', 'DocumentsController@showAll');
 
 Route::resource('document', 'DocumentsController');
