@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller
+class UsersController extends Controller implements CanResetPasswordContract
 {
-
     /**
      * Display the specified resource.
      *

@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * @property int $id
@@ -23,10 +26,10 @@ use Illuminate\Auth\Authenticatable as AuthenticableTrait;
  * @property Report[] $reports
  * @property Translation[] $translations
  */
-class User extends Model implements Authenticatable
+class User extends Model implements Authenticatable, CanResetPasswordContract
 {
 
-    use AuthenticableTrait;
+    use AuthenticableTrait, CanResetPassword, Notifiable;
     /**
      * The table associated with the model.
      * 
