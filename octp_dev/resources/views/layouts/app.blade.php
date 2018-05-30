@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,13 +25,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- JQuery -->
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-
-    <!-- JQuery-confirm -->
-    <link href="{{ asset('css/jquery-confirm.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/jquery-confirm.min.js') }}" rel="stylesheet"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -34,8 +33,8 @@
         <main class="py-4">
             @include('inc.messages')
             @yield('content')
-            @yield('script')
         </main>
     </div>
 </body>
+@yield('script')
 </html>

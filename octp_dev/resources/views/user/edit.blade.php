@@ -49,21 +49,51 @@
         <div class="container">
             <label> <b>Here you can change your email </b></label> <br />
             <hr />
-            <label for="email"><b>*New Email</b></label>
+            <label for="email"><b>New Email</b></label>
             <input type="text" placeholder="Email" name="email" required>
 
             <button type="submit">Save changes</button>
 
         </div>
 </form>
-<form>
+<form id="deleteForm">
     @csrf
     @method('delete')
         <div class="container">
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
 
-            <button id="deleteButton" class="deleteBtn btn btn-danger">Delete Your Account</button>
+            <button type="button" id="deleteButton" class="deleteBtn btn btn-danger">Delete Your Account</button>
         </div>
 </form>
+@endsection
+
+@section('script')
+<script>
+    var $executed = false; //odvratan hack da bi radilo svaki put
+    $(document).ready(function() { //sacekaj da se ucita ceo dokument
+        $('.deleteBtn').on('click', function() {
+            if (!$executed) {
+                $.noConflict(); //ne radi bez ovoga (sme da se izvrsi samo jednom inace ne zna sta je $)
+                $executed = true;
+            }
+            $.confirm({
+                title: 'Delete your account?',
+                content: 'This action cannot be reverted',
+                autoClose: 'cancelAction|5000',
+                buttons: {
+                    deleteUser: {
+                        text: 'Delete',
+                        btnClass: 'btn-danger',
+                        action: function() {
+                        }
+                    },
+                    cancelAction: {
+                        text: 'Cancel',
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection
