@@ -43,7 +43,7 @@
                     <div class="tekst">
                         <hr>
                         <p>
-                            @foreach ($doc->sentences() as $sent)
+                            @foreach ($doc->sentences as $sent)
                                 {{$sent->text}}&nbsp
                             @endforeach
                         </p>
