@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Language;
+use App\Sentence;
 use App\WantedTranslations;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -100,14 +101,7 @@ class DocumentsController extends Controller
 
         // everything is ok, create new document
 
-        if($choice == 'typeChoice1') {
-            // uploading document as file
 
-        } else if($choice == 'typeChoice2') {
-            // uploading document as text
-            //info($data);
-            $this->addSentencesToDatabase($data['text']);
-        }
 
         $srcLanguage = Language::all()->where('name', $data['srclanguage'])->first();
         $destLanguage = Language::all()->where('name', $data['dstlanguage'])->first();
@@ -130,6 +124,15 @@ class DocumentsController extends Controller
         $wantedTranslations->document()->associate($document);
         $wantedTranslations->language()->associate($destLanguage);
         $wantedTranslations->save();
+
+        if($choice == 'typeChoice1') {
+            // uploading document as file
+
+        } else if($choice == 'typeChoice2') {
+            // uploading document as text
+            //info($data);
+            $this->addSentencesToDatabase($document, $data['text']);
+        }
 
         // TODO: display message to the user
         return redirect("/document/show/" . $document->id);
@@ -190,11 +193,14 @@ class DocumentsController extends Controller
         //
     }
 
-    public function addSentencesToDatabase($text) {
+    public function addSentencesToDatabase($document, $text) {
         //info("testlogssdkf");
         $sentences = explode(".", $text);
-        foreach ($sentences as $sentence) {
-            info($sentence);
+        foreach ($sentences as $sentenceText) {
+            $sentence = new Sentence();
+            $sentence->document()->associate($document);
+            $sentence->text = $sentenceText;
+            $sentence->save();
         }
     }
 }
