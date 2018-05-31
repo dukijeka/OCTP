@@ -201,6 +201,9 @@ class DocumentsController extends Controller
         //info("testlogssdkf");
         $sentences = explode(".", $text);
         foreach ($sentences as $sentenceText) {
+            if (strlen(trim($sentenceText)) == 0) {
+                continue; // skip empty strings
+            }
             $sentence = new Sentence();
             $sentence->document()->associate($document);
             $sentence->text = $sentenceText;
