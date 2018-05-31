@@ -112,6 +112,7 @@ class DocumentsController extends Controller
         $document->date_created = Carbon::now();
         $document->language_id = $srcLanguage->id;
         $document->posting_user_id = Auth::id();
+        $document->title = $data['documentName'];
 
         // TODO: where to save text or file ? => we have to split it into sentences and add them to db
 
