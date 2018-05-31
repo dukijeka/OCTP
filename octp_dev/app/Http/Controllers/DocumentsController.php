@@ -167,6 +167,18 @@ class DocumentsController extends Controller
     }
 
     /**
+     * Display user's documents.
+     */
+    public function my() {
+
+        $user = User::find(Auth::id());
+
+        $docs = $user->documents;
+
+        return view('document.showall')->with('docs', $docs);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Document  $document

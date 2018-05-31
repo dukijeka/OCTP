@@ -15,9 +15,22 @@
         </li>
         <li>
             <a href="/document/showAll" class="dropbtn">
-                View documents
+                All documents
             </a>
         </li>
+        @if (Auth::check())
+        <li>
+            <a href="/document/my" class="dropbtn">
+                My documents
+            </a>
+        </li>
+        <li>
+            <a href="/document/create" class="dropbtn">
+                Upload document
+            </a>
+        </li>
+        @endif
+
         @if (Auth::check())
             <li style="float:right">
                 <a href="{{ url('user/'.Auth::id()) }}">

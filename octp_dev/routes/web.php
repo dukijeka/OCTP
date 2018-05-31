@@ -32,6 +32,7 @@ Route::delete('user/deleteuser/{id}', 'UsersController@deleteUser');
 
 Route::get('/document', 'DocumentsController@index');
 Route::get('/document/showAll', 'DocumentsController@showAll');
+Route::get('/document/my', 'DocumentsController@my');
 //Route::resource('document', 'DocumentsController');
 Route::get('/document/create', 'DocumentsController@create');
 Route::post('/document/store', 'DocumentsController@store');
