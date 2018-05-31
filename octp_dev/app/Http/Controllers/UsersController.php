@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller implements CanResetPasswordContract
+class UsersController extends Controller
 {
     /**
      * Display the specified resource.
@@ -23,7 +23,14 @@ class UsersController extends Controller implements CanResetPasswordContract
         if ($id == Auth::id())
         {
             $user = User::find($id);
-            return view('user.show')->with('user', $user);
+            $contributions = null;
+            $users = null;
+            if ($user->access_level == 10) {
+                $users = User::where('access_level', 1)->orWhere('access_level', 5)->get();
+            }
+            return view('user.show')->with(['user' => $user, 
+                                            'contributions' => $contributions,
+                                            'users' => $users]);
         }
         else {
             return redirect('/home')->withErrors(['You can only view your own profile']);
@@ -105,6 +112,13 @@ class UsersController extends Controller implements CanResetPasswordContract
         }
     }
 
+    /**
+     * Change the user's password
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function changePass(Request $request, $id) {
         if ($id == Auth::id()) {
             $messages = [
@@ -132,6 +146,13 @@ class UsersController extends Controller implements CanResetPasswordContract
         }
     }
 
+    /**
+     * Change the user's email address
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function changeEmail(Request $request, $id) {
         if ($id == Auth::id()) {
             $request->validate([
@@ -163,15 +184,74 @@ class UsersController extends Controller implements CanResetPasswordContract
         if ($id == Auth::id()) {
             $user = User::find($id);
             $user->delete();
-            //return redirect('/home');
             return response()->json(['success' => 'Deleted!']);
         }
         else {
-            //return redirect('/home')->withErrors(['You can only delete you own account']);
             return response()->json(['error' => 'You can only delete your own account']);
         }
     }
 
+    /**
+     * Promote the specified user to a moderator
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function promoteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->access_level = 5;
+            $user->save();
+            return redirect('user/'.$id)->withSuccess('User promoted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can promote users']);
+        }
+    }
+
+    /**
+     * Demote the specified user
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function demoteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->access_level = 1;
+            $user->save();
+            return redirect('user/'.$id)->withSuccess('User demoted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can demote users']);
+        }
+    }
+
+    /**
+     * Delete the specified user account
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->delete();
+            return redirect('user/'.$id)->withSuccess('User deleted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can delete user accounts']);
+        }
+    }
+
+    /**
+     * Validate the data before updating the database
+     * @param array $data
+     * @return bool
+     */
     private function validateUpdate($data) {
         return Validator::make($data, [
             'firstName' => 'required|string',

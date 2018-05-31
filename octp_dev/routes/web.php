@@ -26,6 +26,9 @@ Route::resource('user',
 
 Route::post('user/changepass/{id}', 'UsersController@changePass');
 Route::post('user/changeemail/{id}', 'UsersController@changeEmail');
+Route::post('user/promoteuser/{id}', 'UsersController@promoteUser');
+Route::post('user/demoteuser/{id}', 'UsersController@demoteUser');
+Route::delete('user/deleteuser/{id}', 'UsersController@deleteUser');
 
 Route::get('/document/showAll', 'DocumentsController@showAll');
 

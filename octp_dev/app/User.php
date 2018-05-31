@@ -100,11 +100,4 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
     {
         return $this->hasMany('App\Translation');
     }
-
-    // /**
-    //  * @return string
-    //  */
-    // public function getAuthPassword() {
-    //     return $this->password_hash;
-    // }
 }
