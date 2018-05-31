@@ -41,5 +41,6 @@ Route::get('/document/edit', 'DocumentsController@edit');
 Route::get('/document/destroy/{id}', 'DocumentsController@destroy');
 
 Route::get('/report', 'ReportsController@index');
+Route::get('/report/my', 'ReportsController@my');
 Route::get('/report/store', 'ReportsController@store');
 

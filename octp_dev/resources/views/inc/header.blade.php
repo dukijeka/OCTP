@@ -30,6 +30,21 @@
             </a>
         </li>
         @endif
+        @if (Auth::check())
+            @if(\App\Helpers\Helper::getCurrentUser()->isModerator())
+                <li>
+                    <a href="/report" class="dropbtn">
+                        Reports
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="/report/my" class="dropbtn">
+                        My reports
+                    </a>
+                </li>
+            @endif
+        @endif
 
         @if (Auth::check())
             <li style="float:right">

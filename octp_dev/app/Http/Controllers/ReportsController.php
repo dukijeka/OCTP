@@ -17,6 +17,16 @@ class ReportsController extends Controller
      */
     public function index()
     {
+        return view("report.index")->with(['reports' => Report::all()]);
+    }
+
+    /**
+     * Display a listing of user's reports.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function my()
+    {
         $user = Helper::getCurrentUser();
         return view("report.index")->with(['reports' => $user->reports]);
     }
@@ -40,11 +50,15 @@ class ReportsController extends Controller
     public function store(Request $request)
     {
         $doc = Document::findOrFail($request['docId']);
+        $user = Helper::getCurrentUser();
+
+        if(Helper::hasUserReportedDocument($user, $doc))
+            return redirect("/document/show/" . $doc->id)->withErrors("You already reported this document");
 
         $report = new Report();
         $report->explanation = $request['explanation'];
         $report->date = Carbon::now();
-        $report->user()->associate(Helper::getCurrentUser());
+        $report->user()->associate($user);
         $report->document()->associate($doc);
 
         $report->save();
