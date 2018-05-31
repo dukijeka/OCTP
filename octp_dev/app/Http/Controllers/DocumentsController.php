@@ -101,6 +101,10 @@ class DocumentsController extends Controller
             return redirect("/document/create")->withErrors($validator);
         }
 
+        if ($data['srclanguage'] == $data['dstlanguage']) {
+            return redirect("/document/create")->withErrors("Source and destination languages must be different!");
+        }
+
         // everything is ok, create new document
 
 
