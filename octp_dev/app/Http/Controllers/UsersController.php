@@ -24,8 +24,13 @@ class UsersController extends Controller
         {
             $user = User::find($id);
             $contributions = null;
+            $users = null;
+            if ($user->access_level == 10) {
+                $users = User::where('access_level', 1)->orWhere('access_level', 5)->get();
+            }
             return view('user.show')->with(['user' => $user, 
-                                            'contributions' => $contributions]);
+                                            'contributions' => $contributions,
+                                            'users' => $users]);
         }
         else {
             return redirect('/home')->withErrors(['You can only view your own profile']);
@@ -107,6 +112,13 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Change the user's password
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function changePass(Request $request, $id) {
         if ($id == Auth::id()) {
             $messages = [
@@ -134,6 +146,13 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Change the user's email address
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function changeEmail(Request $request, $id) {
         if ($id == Auth::id()) {
             $request->validate([
@@ -172,6 +191,67 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * Promote the specified user to a moderator
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function promoteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->access_level = 5;
+            $user->save();
+            return redirect('user/'.$id)->withSuccess('User promoted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can promote users']);
+        }
+    }
+
+    /**
+     * Demote the specified user
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function demoteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->access_level = 1;
+            $user->save();
+            return redirect('user/'.$id)->withSuccess('User demoted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can demote users']);
+        }
+    }
+
+    /**
+     * Delete the specified user account
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteUser(Request $request, $id) {
+        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+            $user = User::find($request['id']);
+            $user->delete();
+            return redirect('user/'.$id)->withSuccess('User deleted');
+        }
+        else {
+            return back()->withErrors(['Only the administrator can delete user accounts']);
+        }
+    }
+
+    /**
+     * Validate the data before updating the database
+     * @param array $data
+     * @return bool
+     */
     private function validateUpdate($data) {
         return Validator::make($data, [
             'firstName' => 'required|string',
