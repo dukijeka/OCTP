@@ -22,7 +22,7 @@
                     {{ $language->name }} <br/>
             @endforeach
 
-            <button type="submit">Save changes</button>
+            <button type="submit" class="btn btn-success">Save changes</button>
 
         </div>
 </form>
@@ -40,7 +40,7 @@
             <label for="rnewpass"><b>*Retype new password</b></label>
             <input type="password" placeholder="Retype new password" name="newpass_confirmation" required>
 
-            <button type="submit">Save changes</button>
+            <button type="submit" class="btn btn-success">Save changes</button>
 
         </div>
 </form>
@@ -52,7 +52,7 @@
             <label for="email"><b>New Email</b></label>
             <input type="text" placeholder="Email" name="email" required>
 
-            <button type="submit">Save changes</button>
+            <button type="submit" class="btn btn-success">Save changes</button>
 
         </div>
 </form>
