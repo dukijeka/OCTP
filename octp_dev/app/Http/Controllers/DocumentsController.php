@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\Helpers\Helper;
 use App\Language;
 use App\Sentence;
 use App\User;
@@ -145,7 +146,9 @@ class DocumentsController extends Controller
             $this->addSentencesToDatabase($document, $data['text']);
         }
 
-        // TODO: display message to the user
+        // display message to the user
+        Helper::setSuccessMessage("Document created successfully");
+
         return redirect("/document/show/" . $document->id);
     }
 
@@ -226,6 +229,8 @@ class DocumentsController extends Controller
         }
 
         $doc->delete();
+
+        Helper::setSuccessMessage("Document deleted successfully");
 
         return redirect("/document/");
     }
