@@ -45,6 +45,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm() {
+        $languages = Language::all();
+        return view('auth.register')->with('languages', $languages);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *

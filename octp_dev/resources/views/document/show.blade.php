@@ -44,12 +44,22 @@
 
                 <button onclick="reportDocument()">Report</button>
 
+                @if(Auth::id() == $doc->user->id)
+                    <a href="/document/destroy/{{$doc->id}}">
+                        <button>Delete</button>
+                    </a>
+                @endif
+
+
 
             </div>
 
 
 
             <div class="main">
+
+                <br>
+                <br>
 
                 <p><strong>{{$doc->title()}}</strong></p>
 

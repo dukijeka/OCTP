@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\Language;
 use App\Sentence;
+use App\User;
 use App\WantedTranslations;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Comment\Doc;
 
@@ -110,6 +112,7 @@ class DocumentsController extends Controller
         $document->date_created = Carbon::now();
         $document->language_id = $srcLanguage->id;
         $document->posting_user_id = Auth::id();
+        $document->title = $data['documentName'];
 
         // TODO: where to save text or file ? => we have to split it into sentences and add them to db
 
@@ -164,6 +167,18 @@ class DocumentsController extends Controller
     }
 
     /**
+     * Display user's documents.
+     */
+    public function my() {
+
+        $user = User::find(Auth::id());
+
+        $docs = $user->documents;
+
+        return view('document.showall')->with('docs', $docs);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Document  $document
@@ -192,9 +207,23 @@ class DocumentsController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $document)
+    public function destroy($id)
     {
-        //
+
+        $doc = Document::findOrFail($id);
+        $user = User::find(Auth::id());
+
+        if(!$user->isModerator() && !$user->isAdmin()) {
+            // user is not moderator nor admin => he must be the owner in order to delete the document
+            if (null == $doc->user || $user->id != $doc->user->id) {
+                // user is not owner of this document
+                return back()->withErrors("Only owner of document can delete it");
+            }
+        }
+
+        $doc->delete();
+
+        return redirect("/document/");
     }
 
     public function addSentencesToDatabase($document, $text) {

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Report[] $reports
  * @property Sentence[] $sentences
  * @property Language[] $languages
+ * @property string $title
  */
 class Document extends Model
 {
@@ -33,7 +34,7 @@ class Document extends Model
     /**
      * @var array
      */
-    protected $fillable = ['posting_user_id', 'date_created', 'language_id', 'id'];
+    protected $fillable = ['posting_user_id', 'date_created', 'language_id', 'id', 'title'];
 
     /**
      * Disable timestamps
@@ -84,7 +85,7 @@ class Document extends Model
     }
 
     public function title() {
-        return "";
+        return $this->title;
     }
 
 }
