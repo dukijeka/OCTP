@@ -6,7 +6,7 @@
 
         <div class="container">
 
-            <form action="/document/store" method="post">
+            <form action="/document/store" method="post" enctype="multipart/form-data">
 
                 <h1>Document upload</h1>
 
@@ -20,8 +20,8 @@
                     <input type="radio" id="typeChoice2" name="typeChoice" value="typeChoice2">
                 </p>
 
-                {{ csrf_field() }}
-                <input type="file" name="file">
+                {{ csrf_field() }} <!-- this is for security purposes and must be included if the form is using post method -->
+                <input type="file" name="file" id="file">
 
                 <textarea id="text" name="text" cols="60" rows="20"></textarea>
 

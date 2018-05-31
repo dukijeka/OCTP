@@ -129,7 +129,8 @@ class DocumentsController extends Controller
             // uploading document as file
             $file = $request->file('file');
 
-            info("uploadedFile: " . $file);
+            //info("uploadedFile: " . join("", file($file)));
+            $this->addSentencesToDatabase($document, join("", file($file)));
 
         } else if($choice == 'typeChoice2') {
             // uploading document as text
