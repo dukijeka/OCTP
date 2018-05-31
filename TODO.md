@@ -4,19 +4,18 @@
 
 **Priority**
 
-- View documents -----RESENO valjda
+- View documents - improve design ; sort ? ;
+
 - View document
-	- onaj ko je dodao sta vidi
-	- onaj ko prevodi sta vidi
-	- boja teksta
-	- procenat prevedenog
-	- prevodi po recenicama, sa ocenama
-	- prozor za prevod
-	- selektovanje recenice (spada u prevode po recenicama)
-- Kod korisnika
-	- rejting
-- Pregled svih korisnika sa opcijama dodavanja privilegijas
+	- admins should also have the ability to delete the document
+	- translation functionality
+	- sentence colors
+	- percentage of translated text ?
+	- display translations and ratings
+	- select sentences
 	
+- Add separate page with all users
+
 
 
 **Optional**
