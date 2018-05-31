@@ -38,7 +38,7 @@
                         <form method="post" action="{{ url('user/demoteuser/'.Auth::id()) }}">
                             @csrf
                             <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button type="submit" class="btn btn-primary" @if($singleUser->access_level == 1) disabled @endif>
+                            <button type="submit" class="btn btn-warning">
                                 Demote user
                             </button>
                         </form>
@@ -46,7 +46,7 @@
                         <form method="post" action="{{ url('user/promoteuser/'.Auth::id()) }}">
                             @csrf
                             <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button class="btn btn-primary" @if($singleUser->access_level == 5) disabled @endif>
+                            <button class="btn btn-info">
                                 Promote user
                             </button>
                         </form>

@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class Helper
 {
     public static function displayRatingStars(int $numStars)
@@ -21,6 +24,10 @@ class Helper
 
     public static function setSuccessMessage($message) {
         session()->flash('success', $message);
+    }
+
+    public static function getCurrentUser() {
+        return User::find(Auth::id());
     }
 
 }
