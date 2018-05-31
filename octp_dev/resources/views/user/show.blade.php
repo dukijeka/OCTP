@@ -20,7 +20,6 @@
                 </th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
             @foreach ($users as $singleUser)
                 <tr>
@@ -35,15 +34,7 @@
                     <form method="post" action=""></form> {{-- odvratan hack da bi svaka forma radila, bez ovoga se prva forma ne renderuje --}}
                     </td>
                     <td>
-                        <form method="post" action="{{ url('user/promoteuser/'.Auth::id()) }}">
-                            @csrf
-                            <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button class="btn btn-primary" @if($singleUser->access_level == 5) disabled @endif>
-                                Promote user
-                            </button>
-                        </form>
-                    </td>
-                    <td>
+                        @if ($singleUser->access_level == 5)
                         <form method="post" action="{{ url('user/demoteuser/'.Auth::id()) }}">
                             @csrf
                             <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
@@ -51,6 +42,15 @@
                                 Demote user
                             </button>
                         </form>
+                        @else
+                        <form method="post" action="{{ url('user/promoteuser/'.Auth::id()) }}">
+                            @csrf
+                            <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
+                            <button class="btn btn-primary" @if($singleUser->access_level == 5) disabled @endif>
+                                Promote user
+                            </button>
+                        </form>
+                        @endif
                     </td>
                     <td>
                         <form method="post" action="{{ url('user/deleteuser/'.Auth::id()) }}">
