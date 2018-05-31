@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property User[] $users
  * @property Document[] $documents
+ * @property Translation[] $translations
  */
 class Language extends Model
 {

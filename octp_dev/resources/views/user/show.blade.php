@@ -32,12 +32,13 @@
                     </td>
                     <td>
                         {{$singleUser->username}}
+                    <form method="post" action=""></form> {{-- odvratan hack da bi svaka forma radila, bez ovoga se prva forma ne renderuje --}}
                     </td>
                     <td>
                         <form method="post" action="{{ url('user/promoteuser/'.Auth::id()) }}">
                             @csrf
                             <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button type="submit" class="btn btn-primary" @if($singleUser->access_level == 5) disabled @endif>
+                            <button class="btn btn-primary" @if($singleUser->access_level == 5) disabled @endif>
                                 Promote user
                             </button>
                         </form>
@@ -56,7 +57,7 @@
                             @csrf
                             @method('delete')
                             <input type="hidden" value="{{ $singleUser->id }}" name="id">
-                            <button type="submit" class="btn btn-danger">Delete user</button>                        
+                            <button type="submit" id="deleteBtn" class="btn btn-danger">Delete user</button>                        
                         </form>
                     </td>
                 </tr>
@@ -88,16 +89,18 @@
         <hr />
 
         <ul class="list-group">
-            @foreach ($user->translations as $translation)
+            @foreach ($contributions as $contribution)
                 <li class="list-group-item">
-                    
+                    <a style="color:black" href="{{ url('document/show/'.$contribution->id) }}">
+                        {{ "Document ".$contribution->id }}
+                    </a>
                 </li>
             @endforeach
         </ul>
+        <br>
+        <a href="{{ url('user/'.$user->id.'/edit') }}" ><button class="btn btn-success" type = "button">Edit My Profile</button></a>
 
-        <a href="{{ url('user/'.$user->id.'/edit') }}" class = "dropbtn"><button type = "button">Edit My Profile</button></a>
-
-        <a href="/document/create"><button type = "button"  class = "uplbtn">Upload new document</button></a>
+        <a href="/document/create"><button type = "button"  class = "btn btn-primary">Upload new document</button></a>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

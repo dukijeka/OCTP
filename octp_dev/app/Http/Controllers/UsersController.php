@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Language;
 use App\KnowsLanguage;
+use App\Document;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -23,7 +25,15 @@ class UsersController extends Controller
         if ($id == Auth::id())
         {
             $user = User::find($id);
-            $contributions = null;
+            $contributions = DB::select('select document.id,
+                                                document.posting_user_id,
+                                                document.date_created,
+                                                document.language_id
+                                         from document
+                                         join sentence on document.id = sentence.document_id
+                                         join translation on sentence.id = translation.sentence_id and 
+                                                                           translation.user_id = '.$id.
+                                        ' group by document.id');
             $users = null;
             if ($user->access_level == 10) {
                 $users = User::where('access_level', 1)->orWhere('access_level', 5)->get();
