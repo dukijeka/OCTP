@@ -30,14 +30,13 @@ Route::post('user/promoteuser/{id}', 'UsersController@promoteUser');
 Route::post('user/demoteuser/{id}', 'UsersController@demoteUser');
 Route::delete('user/deleteuser/{id}', 'UsersController@deleteUser');
 
+Route::get('/document', 'DocumentsController@index');
 Route::get('/document/showAll', 'DocumentsController@showAll');
-
 //Route::resource('document', 'DocumentsController');
 Route::get('/document/create', 'DocumentsController@create');
 Route::post('/document/store', 'DocumentsController@store');
 Route::get('/document/show/{id}', 'DocumentsController@show');
-//Route::get('/document/showAll', 'DocumentsController@showAll');
 Route::get('/document/edit', 'DocumentsController@edit');
-
+Route::get('/document/destroy/{id}', 'DocumentsController@destroy');
 
 

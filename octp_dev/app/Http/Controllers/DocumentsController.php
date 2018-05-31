@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\Language;
 use App\Sentence;
+use App\User;
 use App\WantedTranslations;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Comment\Doc;
 
@@ -192,9 +194,23 @@ class DocumentsController extends Controller
      * @param  \App\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $document)
+    public function destroy($id)
     {
-        //
+
+        $doc = Document::findOrFail($id);
+        $user = User::find(Auth::id());
+
+        if(!$user->isModerator() && !$user->isAdmin()) {
+            // user is not moderator nor admin => he must be the owner in order to delete the document
+            if (null == $doc->user || $user->id != $doc->user->id) {
+                // user is not owner of this document
+                return back()->withErrors("Only owner of document can delete it");
+            }
+        }
+
+        $doc->delete();
+
+        return redirect("/document/");
     }
 
     public function addSentencesToDatabase($document, $text) {

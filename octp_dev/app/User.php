@@ -100,4 +100,13 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
     {
         return $this->hasMany('App\Translation');
     }
+
+    public function isAdmin() {
+        return $this->access_level == 10;
+    }
+
+    public function isModerator() {
+        return $this->access_level == 5;
+    }
+
 }
