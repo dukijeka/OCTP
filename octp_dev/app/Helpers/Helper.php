@@ -18,4 +18,9 @@ class Helper
         }
 
     }
+
+    public static function setSuccessMessage($message) {
+        session()->flash('success', $message);
+    }
+
 }
