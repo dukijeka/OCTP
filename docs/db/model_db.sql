@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `document`
 --
-
+USE octp;
 DROP TABLE IF EXISTS `document`;
 CREATE TABLE IF NOT EXISTS `document` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
