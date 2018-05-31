@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $sentence_id
  * @property User $user
  * @property Rating[] $ratings
+ * @property Sentence $sentence
+ * @property Language $language
  */
 class Translation extends Model
 {
@@ -55,5 +57,19 @@ class Translation extends Model
     public function ratings()
     {
         return $this->hasMany('App\Rating');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sentence() {
+        return $this->belongsTo('App\Sentence');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function language() {
+        return $this->hasOne('App\Language');
     }
 }

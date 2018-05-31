@@ -29,8 +29,9 @@
         <hr />
 
         <ul class="list-group">
-            @foreach ($user->documents as $document)
+            @foreach ($user->translations as $translation)
                 <li class="list-group-item">
+                    
                 </li>
             @endforeach
         </ul>

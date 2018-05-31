@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller implements CanResetPasswordContract
+class UsersController extends Controller
 {
     /**
      * Display the specified resource.
@@ -23,7 +23,9 @@ class UsersController extends Controller implements CanResetPasswordContract
         if ($id == Auth::id())
         {
             $user = User::find($id);
-            return view('user.show')->with('user', $user);
+            $contributions = null;
+            return view('user.show')->with(['user' => $user, 
+                                            'contributions' => $contributions]);
         }
         else {
             return redirect('/home')->withErrors(['You can only view your own profile']);
@@ -163,11 +165,9 @@ class UsersController extends Controller implements CanResetPasswordContract
         if ($id == Auth::id()) {
             $user = User::find($id);
             $user->delete();
-            //return redirect('/home');
             return response()->json(['success' => 'Deleted!']);
         }
         else {
-            //return redirect('/home')->withErrors(['You can only delete you own account']);
             return response()->json(['error' => 'You can only delete your own account']);
         }
     }
