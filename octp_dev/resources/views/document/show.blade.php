@@ -2,6 +2,21 @@
 
 @section('content')
 
+    <script>
+
+        function reportDocument() {
+
+            var explanation = prompt('Enter reason why are you reporting this document:');
+            if(explanation != null) {
+                // redirect
+                // TODO: escape 'explanation'
+                location.href = "/report/store/?docId={{$doc->id}}&explanation=" + explanation;
+            }
+
+        }
+
+    </script>
+
     <div id="wrapper">
 
         <div class="container">

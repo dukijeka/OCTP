@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use App\Helpers\Helper;
 use App\Report;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -37,7 +39,19 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $doc = Document::findOrFail($request['docId']);
+
+        $report = new Report();
+        $report->explanation = $request['explanation'];
+        $report->date = Carbon::now();
+        $report->user()->associate(Helper::getCurrentUser());
+        $report->document()->associate($doc);
+
+        $report->save();
+
+        Helper::setSuccessMessage("Document reported");
+
+        return redirect("/document/show/" . $doc->id);
     }
 
     /**
