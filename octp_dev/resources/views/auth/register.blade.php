@@ -40,10 +40,9 @@
             <p>
                 <label for="nativelanguage">Native language</label>
                 <select name="nativelanguage">
-                    <option value="Serbian">Serbian</option>
-                    <option value="English">English</option>
-                    <option value="French">French</option>
-                    <option value="German">German</option>
+                    @foreach ($languages as $language)
+                        <option value=" {{ $language->name }}">{{ $language->name }}</option>
+                    @endforeach
                 </select>
             </p>
             <button type="submit">Register</button>
