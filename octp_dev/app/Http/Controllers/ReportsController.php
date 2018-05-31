@@ -7,6 +7,8 @@ use App\Helpers\Helper;
 use App\Report;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -108,8 +110,21 @@ class ReportsController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report)
+    public function destroy(Request $request)
     {
-        //
+        $docId = $request['docId'];
+        $user = Helper::getCurrentUser();
+
+        $report = $user->reports()->where('document_id', $docId)->firstOrFail();
+
+        // this doesn't work
+        //$report->delete();
+
+        DB::delete('delete from report where document_id = ? and user_id = ?', [$report->document_id, $user->id] );
+
+        Helper::setSuccessMessage("Report deleted");
+
+        //return redirect("/document/show/" . $docId);
+        return back();
     }
 }
