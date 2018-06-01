@@ -6,7 +6,7 @@
 
         <div class="container">
 
-            <form action="/document/store" method="post" enctype="multipart/form-data">
+            <form action="/document" method="post" enctype="multipart/form-data">
 
                 <h1>Document upload</h1>
 

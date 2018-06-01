@@ -149,7 +149,7 @@ class DocumentsController extends Controller
         // display message to the user
         Helper::setSuccessMessage("Document created successfully");
 
-        return redirect("/document/show/" . $document->id);
+        return redirect("/document/" . $document->id);
     }
 
     /**
