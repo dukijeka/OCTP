@@ -158,8 +158,51 @@
             });
 
             $('span').click(function(event) {
+                if (!$executed) {
+                    $.noConflict(); //ne radi bez ovoga (sme da se izvrsi samo jednom inace ne zna sta je $)
+                    $executed = true;
+                }
+
                 var sentenceID = Number(event.target.id.replace("sentence_", ""));
-                alert(sentenceID);
+                var originalSentence = document.getElementById(event.target.id).innerText;
+                $.confirm({
+                    title: 'Translate',
+                    content: '' +
+                    '<form action="" class="formName">' +
+                    '<div class="form-group">' +
+                    '<label>Sentence to translate: ' + originalSentence + '</label>' +
+                    '<input type="text" placeholder="Enter your translation here" class="translation form-control" required />' +
+                    '</div>' +
+                    '</form>',
+                    buttons: {
+                        formSubmit: {
+                            text: 'Submit',
+                            btnClass: 'btn-blue',
+                            action: function () {
+                                var translatedSentenceText = this.$content.find('.translation').val();
+                                // if(!name){
+                                //     $.alert('provide a valid translation');
+                                //     return false;
+                                // }
+                                $.alert('Your translation is: ' + translatedSentenceText);
+                            }
+                        },
+                        cancel: function () {
+                            //close
+                        },
+                    },
+                    onContentReady: function () {
+                        // bind to events
+                        var jc = this;
+                        this.$content.find('form').on('submit', function (e) {
+                            // if the user submits the form by pressing enter in the field.
+                            e.preventDefault();
+                            jc.$$formSubmit.trigger('click'); // reference the button and click it
+                        });
+                    },
+                    draggable: true,
+
+                });
             });
 
 
