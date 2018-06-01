@@ -244,7 +244,7 @@ class DocumentsController extends Controller
             }
             $sentence = new Sentence();
             $sentence->document()->associate($document);
-            $sentence->text = $sentenceText;
+            $sentence->text = $sentenceText.'.';
             $sentence->save();
         }
     }

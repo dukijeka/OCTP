@@ -32,7 +32,7 @@
                 <div class="docum" data-from = "{{$doc->srcLanguage()->name}}" data-to = "{{$doc->wantedLanguageName()}}" date-added="{{$doc->date_created}}">
 
                     <div class="title">
-                        <a href="/document/show/{{$doc->id}}">{{$doc->title()}}</a>
+                        <a href="/document/{{$doc->id}}">{{$doc->title()}}</a>
                     </div>
 
                     <div class="fromto">
