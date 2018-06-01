@@ -144,6 +144,7 @@
 
 @section('script')
 
+
     <script>
         var $executed = false;
         $(document).ready(function(){
@@ -171,6 +172,7 @@
                     '<form action="" class="formName">' +
                     '<div class="form-group">' +
                     '<label>Sentence to translate: ' + originalSentence + '</label>' +
+                    '<input type="hidden" value="{{ csrf_token() }}" id="_token" name="_token" />' +
                     '<input type="text" placeholder="Enter your translation here" class="translation form-control" required />' +
                     '</div>' +
                     '</form>',
@@ -184,7 +186,27 @@
                                 //     $.alert('provide a valid translation');
                                 //     return false;
                                 // }
-                                $.alert('Your translation is: ' + translatedSentenceText);
+
+
+                                jQuery.ajax({
+                                        type: "POST",
+                                        url: '/test',
+                                        dataType: 'json',
+                                        data: { "id": "7", _token: $('#_token').val()},
+                                        success: function(data){
+                                            var rep = JSON.parse(data);
+                                            console.log(data);
+                                            if(rep.code == 200)
+                                            {
+                                               alert(rep);
+                                            }
+                                            else{
+                                                alert('error');
+                                            }
+                                        }
+                                    },
+                                );
+                                //$.alert('Your translation is: ' + translatedSentenceText);
                             }
                         },
                         cancel: function () {

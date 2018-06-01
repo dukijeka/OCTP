@@ -43,6 +43,18 @@ class DocumentsController extends Controller
     }
 
     /**
+     * Store new translation to db
+     *
+     * @param  \Illuminate\Http\Request  $data
+     * @return \Illuminate\Http\Response
+     */
+    public function addTranslation($request) {
+        //$data = json_decode($request, true);
+        info("radi request" );
+        return response()->json(['success' => $request]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
