@@ -47,13 +47,17 @@ class UsersController extends Controller
         }
     }
 
-
+    /**
+     * Display all registred users
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function showAll() {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->isAdmin()) {
             $users = User::all();
             return view('user.showAll')->with(['users' => $users]);
         } else {
-            return back()->withErrors(['You must be logged in to create new document']);
+            return back()->withErrors(['Only the administrator can view all users']);
         }
     }
 
@@ -203,8 +207,13 @@ class UsersController extends Controller
     {
         if ($id == Auth::id()) {
             $user = User::find($id);
-            $user->delete();
-            return response()->json(['success' => 'Deleted!']);
+            if (!$user->isAdmin()) {
+                $user->delete();
+                return response()->json(['success' => 'Deleted!']);
+            }
+            else {
+                return response()->json(['error' => 'Administrator cannot delete his account']);
+            }
         }
         else {
             return response()->json(['error' => 'You can only delete your own account']);
@@ -215,15 +224,14 @@ class UsersController extends Controller
      * Promote the specified user to a moderator
      * 
      * @param \Illuminate\Http\Request $request
-     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function promoteUser(Request $request, $id) {
-        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+    public function promoteUser(Request $request) {
+        if (Auth::check() && Auth::user()->access_level == 10) {
             $user = User::find($request['id']);
             $user->access_level = 5;
             $user->save();
-            return redirect('user/'.$id)->withSuccess('User promoted');
+            return back()->withSuccess('User promoted');
         }
         else {
             return back()->withErrors(['Only the administrator can promote users']);
@@ -234,15 +242,14 @@ class UsersController extends Controller
      * Demote the specified user
      * 
      * @param \Illuminate\Http\Request $request
-     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function demoteUser(Request $request, $id) {
-        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+    public function demoteUser(Request $request) {
+        if (Auth::check() && Auth::user()->access_level == 10) {
             $user = User::find($request['id']);
             $user->access_level = 1;
             $user->save();
-            return redirect('user/'.$id)->withSuccess('User demoted');
+            return back()->withSuccess('User demoted');
         }
         else {
             return back()->withErrors(['Only the administrator can demote users']);
@@ -256,11 +263,11 @@ class UsersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteUser(Request $request, $id) {
-        if ($id == Auth::id() && Auth::user()->access_level == 10) {
+    public function deleteUser(Request $request) {
+        if (Auth::check() && Auth::user()->access_level == 10) {
             $user = User::find($request['id']);
             $user->delete();
-            return redirect('user/'.$id)->withSuccess('User deleted');
+            return back()->withSuccess('User deleted');
         }
         else {
             return back()->withErrors(['Only the administrator can delete user accounts']);

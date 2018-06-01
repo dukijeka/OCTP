@@ -56,16 +56,17 @@
 
         </div>
 </form>
+@if (!$user->isAdmin())
 <form method="post" action="{{ url('user/'.$user->id) }}" id="deleteForm">
     @csrf
     @method('delete')
         <div class="container">
             <label> <b>Here you can delete your account </b></label> <br />
             <hr />
-
-        <button type="button" id="deleteButton" data-id="{{ $user->id }}" data-token={{ csrf_token() }} class="deleteBtn btn btn-danger">Delete Your Account</button>
+            <button type="button" id="deleteButton" data-id="{{ $user->id }}" data-token={{ csrf_token() }} class="deleteBtn btn btn-danger">Delete Your Account</button>        
         </div>
 </form>
+@endif
 @endsection
 
 @section('script')
