@@ -2,20 +2,7 @@
 
 @section('content')
 
-    <script>
 
-        function reportDocument() {
-
-            var explanation = prompt('Enter reason why are you reporting this document:');
-            if(explanation != null) {
-                // redirect
-                // TODO: escape 'explanation'
-                location.href = "/report/store/?docId={{$doc->id}}&explanation=" + explanation;
-            }
-
-        }
-
-    </script>
 
     <div id="wrapper">
 
@@ -57,7 +44,7 @@
                 <br>
 
 
-                <button onclick="reportDocument()">Report</button>
+                <button id="reportDocument">Report</button>
 
                 @if(Auth::id() == $doc->user->id)
                     <a href="/document/destroy/{{$doc->id}}">
@@ -81,7 +68,7 @@
                 <p>
 
                     @foreach ($doc->sentences as $sentence)
-                        <span class="sentence" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+                        <span class="sentence" id="sentence_{{$sentence->id}}">{{$sentence->text}}. </span>
                     @endforeach
 
                 </p>
@@ -153,4 +140,25 @@
 
     </div>
 
+@endsection
+
+@section('script')
+
+    <script>
+        var $executed = false;
+        $(document).ready(function(){
+
+            $('#reportDocument').click(function() {
+                var explanation = prompt('Enter reason why are you reporting this document:');
+                if(explanation != null) {
+                    // redirect
+                    // TODO: escape 'explanation'
+                    location.href = "/report/store/?docId={{$doc->id}}&explanation=" + explanation;
+                }
+            });
+
+
+        });
+
+    </script>
 @endsection
