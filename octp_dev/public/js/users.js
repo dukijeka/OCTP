@@ -1,3 +1,5 @@
+$("#searchInput").onkeyup(filter());
+
 function filter() {
     // Declare variables
     var input, filter, table, tr, td, i;
