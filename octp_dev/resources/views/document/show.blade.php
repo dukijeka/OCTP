@@ -68,7 +68,7 @@
                 <p>
 
                     @foreach ($doc->sentences as $sentence)
-                        <span class="sentence" id="sentence_{{$sentence->id}}">{{$sentence->text}}. </span>
+                        <span class="sentence" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
                     @endforeach
 
                 </p>
