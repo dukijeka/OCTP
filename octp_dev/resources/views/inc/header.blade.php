@@ -29,6 +29,11 @@
                 Upload document
             </a>
         </li>
+        <li>
+            <a href="/showAllUsers" class="dropbtn">
+                Search Users
+            </a>
+        </li>
         @endif
         @if (Auth::check())
             @if(\App\Helpers\Helper::getCurrentUser()->isModerator())

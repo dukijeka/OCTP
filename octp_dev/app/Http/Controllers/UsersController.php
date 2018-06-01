@@ -47,6 +47,16 @@ class UsersController extends Controller
         }
     }
 
+
+    public function showAll() {
+        if (Auth::check()) {
+            $users = User::all();
+            return view('user.showAll')->with(['users' => $users]);
+        } else {
+            return back()->withErrors(['You must be logged in to create new document']);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -256,6 +266,8 @@ class UsersController extends Controller
             return back()->withErrors(['Only the administrator can delete user accounts']);
         }
     }
+
+
 
     /**
      * Validate the data before updating the database

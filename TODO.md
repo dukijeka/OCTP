@@ -14,7 +14,7 @@
 	- display translations and ratings
 	- select sentences
 	
-- Add separate page with all users
+
 
 
 
