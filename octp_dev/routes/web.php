@@ -20,15 +20,17 @@ Auth::routes();
 Route::resource('user', 
                 'UsersController', 
                 ['only' => ['show', 
-                            'edit', 
-                            'update', 
+                            'edit',
+                            'update',
                             'destroy']])->middleware('auth');
 
+Route::get('/user/showAll/{id}', 'UsersController@showAll');
 Route::post('user/changepass/{id}', 'UsersController@changePass');
 Route::post('user/changeemail/{id}', 'UsersController@changeEmail');
 Route::post('user/promoteuser/{id}', 'UsersController@promoteUser');
 Route::post('user/demoteuser/{id}', 'UsersController@demoteUser');
 Route::delete('user/deleteuser/{id}', 'UsersController@deleteUser');
+
 
 Route::get('/document', 'DocumentsController@index');
 Route::get('/document/showAll', 'DocumentsController@showAll');
