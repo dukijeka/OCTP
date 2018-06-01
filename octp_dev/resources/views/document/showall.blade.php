@@ -26,7 +26,7 @@
             </form>
         </div>
 
-        <div id="text">
+        <div id="tekst">
 
             @foreach ($docs as $doc)
                 <div class="docum" data-from = "{{$doc->srcLanguage()->name}}" data-to = "{{$doc->wantedLanguageName()}}" date-added="{{$doc->date_created}}">

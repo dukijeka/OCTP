@@ -5,67 +5,6 @@
     <div class="imgcontainer">
         <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="avatar"  width = "10">
     </div>
-    @if (Auth::user()->access_level == 10)
-    <div class="container">
-        <input type="text" id="searchInput" placeholder="Search by username...">
-        <table class="table table-striped" id="myTable">
-            <tr>
-                <th>
-                    First name
-                </th>
-                <th>
-                    Last name
-                </th>
-                <th>
-                    Username
-                </th>
-                <th></th>
-                <th></th>
-            </tr>
-            @foreach ($users as $singleUser)
-                <tr>
-                    <td>
-                        {{$singleUser->first_name}}
-                    </td>
-                    <td>
-                        {{$singleUser->last_name}}
-                    </td>
-                    <td>
-                        {{$singleUser->username}}
-                    <form method="post" action=""></form> {{-- odvratan hack da bi svaka forma radila, bez ovoga se prva forma ne renderuje --}}
-                    </td>
-                    <td>
-                        @if ($singleUser->access_level == 5)
-                        <form method="post" action="{{ url('user/demoteuser/'.Auth::id()) }}">
-                            @csrf
-                            <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button type="submit" class="btn btn-warning">
-                                Demote user
-                            </button>
-                        </form>
-                        @else
-                        <form method="post" action="{{ url('user/promoteuser/'.Auth::id()) }}">
-                            @csrf
-                            <input type="hidden" value="{{ $singleUser->id }}" name="id"/>
-                            <button class="btn btn-info">
-                                Promote user
-                            </button>
-                        </form>
-                        @endif
-                    </td>
-                    <td>
-                        <form method="post" action="{{ url('user/deleteuser/'.Auth::id()) }}">
-                            @csrf
-                            @method('delete')
-                            <input type="hidden" value="{{ $singleUser->id }}" name="id">
-                            <button type="submit" id="deleteBtn" class="btn btn-danger">Delete user</button>                        
-                        </form>
-                    </td>
-                </tr>
-        @endforeach
-        </table>
-    </div>
-    @endif
 
     <div class="container">
         <hr />
@@ -102,6 +41,9 @@
         <a href="{{ url('user/'.$user->id.'/edit') }}" ><button class="btn btn-success" type = "button">Edit My Profile</button></a>
 
         <a href="/document/create"><button type = "button"  class = "btn btn-primary">Upload new document</button></a>
+        @if (Auth::user()->access_level == 10)
+            <a href="{{ url('user/showAllUsers') }}" class="btn btn-primary">Show all users</a>
+        @endif
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

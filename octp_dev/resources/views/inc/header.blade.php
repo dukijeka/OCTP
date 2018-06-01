@@ -19,21 +19,23 @@
             </a>
         </li>
         @if (Auth::check())
-        <li>
-            <a href="/document/my" class="dropbtn">
-                My documents
-            </a>
-        </li>
-        <li>
-            <a href="/document/create" class="dropbtn">
-                Upload document
-            </a>
-        </li>
-        <li>
-            <a href="/showAllUsers" class="dropbtn">
-                Search Users
-            </a>
-        </li>
+            <li>
+                <a href="/document/my" class="dropbtn">
+                    My documents
+                </a>
+            </li>
+            <li>
+                <a href="/document/create" class="dropbtn">
+                    Upload document
+                </a>
+            </li>
+            @if (Auth::user()->isAdmin())
+            <li>
+                <a href="user/showAllUsers" class="dropbtn">
+                    Search Users
+                </a>
+            </li>
+            @endif
         @endif
         @if (Auth::check())
             @if(\App\Helpers\Helper::getCurrentUser()->isModerator())
