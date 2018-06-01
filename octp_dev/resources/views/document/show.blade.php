@@ -157,6 +157,11 @@
                 }
             });
 
+            $('span').click(function(event) {
+                var sentenceID = Number(event.target.id.replace("sentence_", ""));
+                alert(sentenceID);
+            });
+
 
         });
 
