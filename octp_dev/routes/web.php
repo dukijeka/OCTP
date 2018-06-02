@@ -31,22 +31,32 @@ Route::post('user/changepass/{id}', 'UsersController@changePass');
 Route::post('user/changeemail/{id}', 'UsersController@changeEmail');
 
 Route::post('/document/translate', 'DocumentsController@addTranslation');
-Route::get('/document', 'DocumentsController@index');
+Route::get('/document', 'DocumentsController@index')->middleware('auth');
 Route::get('/document/showAll', 'DocumentsController@showAll');
-Route::get('/document/my', 'DocumentsController@my');
+Route::get('/document/my', 'DocumentsController@my')->middleware('auth');
 Route::resource('document',
                 'DocumentsController',
                 ['only' => ['show',
                             'create',
                             'store',
                             'destroy']
-                ]);
+                ])->middleware('auth');
 
 Route::get('report/my', 'ReportsController@my')->middleware('auth');
-Route::post('report/store', 'ReportsController@store')->middleware('auth');
-Route::delete('report/{doc}/{user}', 'ReportsController@destroy')->middleware('auth')->name('report.destroy');
+Route::delete('report/{doc}/{user}', 'ReportsController@destroy')->middleware('auth')->
+                                                                   name('report.destroy');
 Route::resource('report', 
                 'ReportsController',
                 ['only' => ['index',
                             'store']
                 ])->middleware('auth');
+
+
+Route::post('translation', 'TranslationsController@store')->middleware('auth')->
+                                                            name('translation.store');
+Route::post('translation/update', 'TranslationsController@update')->middleware('auth')->
+                                                                    name('translation.update');
+Route::resource('translation', 
+                'TranslationsController',
+                ['only' => ['index',
+                            'destroy']])->middleware('auth');
