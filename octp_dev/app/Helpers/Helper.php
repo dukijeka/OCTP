@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Document;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class Helper
 {
@@ -29,6 +30,13 @@ class Helper
 
     public static function getCurrentUser() {
         return User::find(Auth::id());
+    }
+
+    public static function getCurrentUserOrFail() {
+        $user = self::getCurrentUser();
+        if($user != null)
+            return $user;
+        abort(403, 'You must be logged in to access this page.');
     }
 
     public static function hasUserReportedDocument(User $user, Document $doc) {

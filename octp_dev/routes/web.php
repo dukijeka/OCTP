@@ -44,8 +44,8 @@ Route::resource('document',
                             'destroy']
                 ]);
 
-Route::get('/report', 'ReportsController@index');
-Route::get('/report/my', 'ReportsController@my');
-Route::get('/report/store', 'ReportsController@store');
-Route::get('/report/destroy', 'ReportsController@destroy');
+Route::get('/report', 'ReportsController@index')->middleware('auth');
+Route::get('/report/my', 'ReportsController@my')->middleware('auth');
+Route::get('/report/store', 'ReportsController@store')->middleware('auth');
+Route::get('/report/destroy', 'ReportsController@destroy')->middleware('auth');
 
