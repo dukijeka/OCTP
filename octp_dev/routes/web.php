@@ -44,8 +44,11 @@ Route::resource('document',
                             'destroy']
                 ]);
 
-Route::get('/report', 'ReportsController@index')->middleware('auth');
-Route::get('/report/my', 'ReportsController@my')->middleware('auth');
-Route::get('/report/store', 'ReportsController@store')->middleware('auth');
-Route::get('/report/destroy', 'ReportsController@destroy')->middleware('auth');
-
+Route::get('report/my', 'ReportsController@my')->middleware('auth');
+Route::post('report/store', 'ReportsController@store')->middleware('auth');
+Route::delete('report/{doc}/{user}', 'ReportsController@destroy')->middleware('auth')->name('report.destroy');
+Route::resource('report', 
+                'ReportsController',
+                ['only' => ['index',
+                            'store']
+                ])->middleware('auth');

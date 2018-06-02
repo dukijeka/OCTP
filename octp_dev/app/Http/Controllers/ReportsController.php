@@ -52,12 +52,13 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        $doc = Document::findOrFail($request['docId']);
-        $user = Helper::getCurrentUser();
+        $doc = Document::find($request['id']);
+        $user = Auth::user();
 
-        if(Helper::hasUserReportedDocument($user, $doc))
-            return redirect("/document/" . $doc->id)->withErrors("You already reported this document");
-
+        if(Helper::hasUserReportedDocument($user, $doc)) {
+            info('wtf');
+            return response()->json(['error' => 'You already reported this document']);
+        }
         $report = new Report();
         $report->explanation = $request['explanation'];
         $report->date = Carbon::now();
@@ -66,9 +67,7 @@ class ReportsController extends Controller
 
         $report->save();
 
-        Helper::setSuccessMessage("Document reported");
-
-        return redirect("/document/" . $doc->id);
+        return response()->json(['success' => 'Document reported']);
     }
 
     /**
@@ -108,31 +107,23 @@ class ReportsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Report  $report
+     * @param  int $doc
+     * @param int $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($doc, $user)
     {
-        $docId = $request['docId'];
-        $author = User::findOrFail($request['userId']);
-        $user = Helper::getCurrentUser();
+        $report = Report::where('document_id', $doc)->
+                          where('user_id', $user)->first();
+        $author = User::find($report->user_id);
+        $user = Auth::user();
 
         if(!$user->isAdminOrModerator()) {
             if($user != $author) {
                 return back()->withErrors("You can not delete this report");
             }
         }
-
-        $report = $author->reports()->where('document_id', $docId)->firstOrFail();
-
-        // this doesn't work
-        //$report->delete();
-
-        DB::delete('delete from report where document_id = ? and user_id = ?', [$report->document_id, $author->id] );
-
-        Helper::setSuccessMessage("Report deleted");
-
-        //return redirect("/document/show/" . $docId);
-        return back();
+        $result = DB::delete('delete from report where document_id = ? and user_id = ?', [$doc, $user->id]);
+        return back()->withSuccess('Report deleted');
     }
 }
