@@ -35,7 +35,7 @@
         <ul class="list-group">
             @foreach ($contributions as $contribution)
                 <li class="list-group-item">
-                    <a style="color:black" href="{{ url('document/show/'.$contribution->id) }}">
+                    <a style="color:black" href="{{ url('document/'.$contribution->id) }}">
                         {{ "Document ".$contribution->id }}
                     </a>
                 </li>
