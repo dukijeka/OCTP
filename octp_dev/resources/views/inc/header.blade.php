@@ -31,7 +31,7 @@
             </li>
             @if (Auth::user()->isAdmin())
             <li>
-                <a href="user/showAllUsers" class="dropbtn">
+                <a href="/user/showAllUsers" class="dropbtn">
                     Search Users
                 </a>
             </li>
