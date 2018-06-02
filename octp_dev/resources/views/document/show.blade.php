@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{$doc->title()}}
+@endsection
+
 @section('content')
 
 

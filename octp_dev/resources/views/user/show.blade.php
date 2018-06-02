@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$user->first_name . ' ' . $user->last_name}}
+@endsection
+
 @section('content')
 <form>
     <div class="imgcontainer">

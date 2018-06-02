@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Edit profile')
+
 @section('content')
 <form method="post" action="{{ url('user/'.$user->id) }}">
         @method('PUT');
