@@ -6,6 +6,7 @@
 
 @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/viewdocument.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -17,12 +18,34 @@
         <div class="container">
 
 
+            <div>
 
-            <!-- Side navigation -->
-            <div class="sidenav">
+                <table class="table table-striped">
 
-                Document name:
+                    <tr>
+                        <th>Document name:</th>
+                        <th>Language:</th>
+                        <th>Language requested:</th>
+                        <th>Uploaded by:</th>
+                        <th>Date:</th>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>{{$doc->title()}}</td>
+                        <td>{{$doc->srcLanguage()->name}}</td>
+                        <td>{{$doc->wantedLanguageName()}}</td>
+                        <td>{{$doc->user->fullName()}}</td>
+                        <td>{{$doc->date_created}}</td>
+
+                    </tr>
+
+                </table>
+
                 <br>
+
+                {{--<br>
                 <strong>{{$doc->title()}}</strong>
                 <br>
                 <br>
@@ -49,7 +72,7 @@
                 <br>
                 <strong>{{$doc->date_created}}</strong>
                 <br>
-                <br>
+                <br>--}}
 
 
                 @if(Auth::check() && ! \App\Helpers\Helper::hasUserReportedDocument(Auth::user(), $doc))
@@ -68,7 +91,7 @@
 
 
 
-            <div class="main">
+            <div>
 
                 <br>
                 <br>
@@ -91,7 +114,7 @@
 
                 <br>
 
-                Translations:
+                <strong>Translations:</strong>
 
                 <br>
                 <br>

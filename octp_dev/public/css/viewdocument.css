@@ -70,8 +70,8 @@ body {
 
 .translations {
 
-	margin-left: 200px; /* Same as the width of the sidebar */
-	margin-top: 1% ;
+	//margin-left: 200px; /* Same as the width of the sidebar */
+	margin-top: 40px ;
     padding: 0px 30px;
     width: auto;
 	height: auto; // 35%;
@@ -83,7 +83,8 @@ body {
 .translations table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    //width: 100%;
+    padding: 5px;
 }
 
 .translations td, .translations th {
@@ -98,6 +99,11 @@ body {
 
 .translations .checked {
     color: orange;
+}
+
+.sentence:hover {
+    background-color: #9fcdff;
+    color: #1c7430;
 }
 
 
