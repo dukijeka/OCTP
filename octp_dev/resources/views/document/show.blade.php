@@ -92,7 +92,7 @@
                 <br>
                 <br>
 
-                <table>
+                <table class="table table-striped">
 
                     <tr>
                         <th style="width:auto">Original sentence</th>
@@ -104,7 +104,8 @@
                     @foreach ($doc->sentences as $sentence)
 
                         @php
-                            $allTranslations = \App\Translation::where('sentence_id', $sentence->id);
+                            //$allTranslations = \App\Translation::where('sentence_id', $sentence->id);
+                            $allTranslations = $sentence->translations;
                         @endphp
 
                         @foreach ($allTranslations as $translation)
