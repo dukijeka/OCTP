@@ -109,4 +109,8 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
         return $this->access_level == 5;
     }
 
+    public function isAdminOrModerator() {
+        return $this->isAdmin() || $this->isModerator();
+    }
+
 }

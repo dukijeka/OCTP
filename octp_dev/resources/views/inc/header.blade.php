@@ -38,7 +38,7 @@
             @endif
         @endif
         @if (Auth::check())
-            @if(\App\Helpers\Helper::getCurrentUser()->isModerator())
+            @if(Auth::user()->isAdminOrModerator())
                 <li>
                     <a href="/report" class="dropbtn">
                         Reports
