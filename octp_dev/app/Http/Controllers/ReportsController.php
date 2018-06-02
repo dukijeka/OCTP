@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\Helpers\Helper;
 use App\Report;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,14 +114,21 @@ class ReportsController extends Controller
     public function destroy(Request $request)
     {
         $docId = $request['docId'];
+        $author = User::findOrFail($request['userId']);
         $user = Helper::getCurrentUser();
 
-        $report = $user->reports()->where('document_id', $docId)->firstOrFail();
+        if(!$user->isAdminOrModerator()) {
+            if($user != $author) {
+                return back()->withErrors("You can not delete this report");
+            }
+        }
+
+        $report = $author->reports()->where('document_id', $docId)->firstOrFail();
 
         // this doesn't work
         //$report->delete();
 
-        DB::delete('delete from report where document_id = ? and user_id = ?', [$report->document_id, $user->id] );
+        DB::delete('delete from report where document_id = ? and user_id = ?', [$report->document_id, $author->id] );
 
         Helper::setSuccessMessage("Report deleted");
 

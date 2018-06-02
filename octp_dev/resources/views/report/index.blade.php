@@ -15,6 +15,7 @@
                     <th>Document title</th>
                     <th>Explanation</th>
                     <th>Date</th>
+                    <th>User</th>
                     <th></th>
                 </tr>
 
@@ -24,7 +25,8 @@
                     <td>{{$r->document->title}}</td>
                     <td>{{$r->explanation}}</td>
                     <td>{{$r->date}}</td>
-                    <td> <a href="/report/destroy?docId={{$r->document->id}}">Delete</a> </td>
+                    <td>{{$r->user->fullName()}}</td>
+                    <td> <a href="/report/destroy?docId={{$r->document->id}}&userId={{$r->user->id}}">Delete</a> </td>
                 </tr>
             @endforeach
 

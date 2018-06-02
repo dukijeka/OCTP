@@ -113,4 +113,8 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
         return $this->isAdmin() || $this->isModerator();
     }
 
+    public function fullName() {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
 }
