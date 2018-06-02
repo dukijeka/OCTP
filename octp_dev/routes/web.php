@@ -30,7 +30,7 @@ Route::resource('user',
 Route::post('user/changepass/{id}', 'UsersController@changePass');
 Route::post('user/changeemail/{id}', 'UsersController@changeEmail');
 
-Route::post('/test/{postdata}', 'DocumentsController@addTranslation');
+Route::post('/test', 'DocumentsController@addTranslation');
 //Route::post('/test', ['as'=> 'ajaxSendmsg', 'uses'=>'DocumentsController@addTranslation']);
 Route::get('/document', 'DocumentsController@index');
 Route::get('/document/showAll', 'DocumentsController@showAll');

@@ -6,6 +6,7 @@ use App\Document;
 use App\Helpers\Helper;
 use App\Language;
 use App\Sentence;
+use App\Translation;
 use App\User;
 use App\WantedTranslations;
 use Carbon\Carbon;
@@ -48,9 +49,33 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $data
      * @return \Illuminate\Http\Response
      */
-    public function addTranslation($request) {
-        //$data = json_decode($request, true);
-        info("radi request" );
+    public function addTranslation(Request $request) {
+
+        $data = $request->all();
+
+        info("addTranslation(): " . join('', $data));
+
+        $validator = Validator::make($data, [
+            'text' => 'required|string|max:1000000',
+            'sentenceId' => 'required|integer|exists:sentence,id'
+        ]);
+
+        if($validator->fails())
+            return response()->json(['error' => $validator]);
+
+        $sentence = Sentence::findOrFail($data['sentenceId']);
+
+        // insert into db
+        $t = new Translation();
+        $t->user()->associate(Auth::user());
+        $t->sentence()->associate($sentence);
+        $t->language_id = $sentence->document->wantedLanguage()->id;
+        $t->date = Carbon::now();
+        $t->translation_text = $data['text'];
+
+        $t->saveOrFail();
+
+
         return response()->json(['success' => $request]);
     }
 

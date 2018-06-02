@@ -193,12 +193,14 @@
                                 //     return false;
                                 // }
 
+                                var token = $('#_token').val();
+                                alert('sending ajax request: token=' + token);
 
                                 jQuery.ajax({
                                         type: "POST",
                                         url: '/test',
                                         dataType: 'json',
-                                        data: { "id": "7", _token: $('#_token').val()},
+                                        data: { "sentenceId": sentenceID, "_token": token, "text": translatedSentenceText },
                                         success: function(data){
                                             var rep = JSON.parse(data);
                                             console.log(data);
@@ -209,10 +211,17 @@
                                             else{
                                                 alert('error');
                                             }
+                                        },
+                                        error: function (request, status, error) {
+                                            //alert(request.responseText);
+                                            alert(status);
+                                            alert(error);
                                         }
-                                    },
+                                    }
                                 );
                                 //$.alert('Your translation is: ' + translatedSentenceText);
+
+                                alert('ajax request is sent');
                             }
                         },
                         cancel: function () {
