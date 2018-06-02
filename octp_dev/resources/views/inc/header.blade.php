@@ -9,11 +9,6 @@
             </a>
         </li>
         <li>
-            <a href="About Us.html" class="dropbtn">
-                About Us
-            </a>
-        </li>
-        <li>
             <a href="/document/showAll" class="dropbtn">
                 All documents
             </a>

@@ -210,22 +210,17 @@
                             btnClass: 'btn-blue',
                             action: function () {
                                 var translatedSentenceText = this.$content.find('.translation').val();
-                                // if(!name){
-                                //     $.alert('provide a valid translation');
-                                //     return false;
-                                // }
 
                                 var token = $('#_token').val();
-                                //alert('sending ajax request: token=' + token);
 
                                 jQuery.ajax({
                                         type: "POST",
-                                        url: '/document/translate',
+                                        url: '{{ route('translation.store') }}',
                                         dataType: 'json',
                                         data: { "sentenceId": sentenceID, "_token": token, "text": translatedSentenceText },
                                         success: function(reply){
                                             if (reply['result'] == "Success") {
-                                                alert("Translation successfuly added!");
+                                                location.reload();
                                             } else {
                                                 alert("Failed to add translation! :(");
                                             }

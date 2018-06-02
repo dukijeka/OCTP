@@ -273,7 +273,6 @@ class DocumentsController extends Controller
     }
 
     private function addSentencesToDatabase($document, $text) {
-        //info("testlogssdkf");
         $sentences = explode(".", $text);
         foreach ($sentences as $sentenceText) {
             if (strlen(trim($sentenceText)) == 0) {
