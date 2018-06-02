@@ -215,7 +215,7 @@
 
                                 jQuery.ajax({
                                         type: "POST",
-                                        url: '/test',
+                                        url: '/document/translate',
                                         dataType: 'json',
                                         data: { "sentenceId": sentenceID, "_token": token, "text": translatedSentenceText },
                                         success: function(reply){
