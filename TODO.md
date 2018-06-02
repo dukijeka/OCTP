@@ -4,21 +4,32 @@
 
 **Priority**
 
+- rating
+
 - View documents - improve design ; sort ? ;
 
 - View document
-	- admins should also have the ability to delete the document
-	- translation functionality
-	- sentence colors
 	- percentage of translated text ?
-	- display translations and ratings
-	- select sentences
-	
+	- color sentences
+	- sort translations ?
+	- when translation is successfull, refresh the page instead of displaying dialog
+	- improve design
+	- translation dialog should be larger
+
+- export db data
+
+- why other user's profile page can't be seen ?
+
 - average rating for translation should be calculated somewhere
 
+- my translations page ?
+
+- my ratings page ?
 
 
 **Optional**
 
 - display fb share button on document page ?
+
+- offer google translate in translation dialog ?
 
