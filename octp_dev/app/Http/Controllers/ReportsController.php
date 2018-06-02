@@ -55,7 +55,7 @@ class ReportsController extends Controller
         $user = Helper::getCurrentUser();
 
         if(Helper::hasUserReportedDocument($user, $doc))
-            return redirect("/document/show/" . $doc->id)->withErrors("You already reported this document");
+            return redirect("/document/" . $doc->id)->withErrors("You already reported this document");
 
         $report = new Report();
         $report->explanation = $request['explanation'];
@@ -67,7 +67,7 @@ class ReportsController extends Controller
 
         Helper::setSuccessMessage("Document reported");
 
-        return redirect("/document/show/" . $doc->id);
+        return redirect("/document/" . $doc->id);
     }
 
     /**

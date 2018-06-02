@@ -8,11 +8,13 @@
 
             <table>
 
-                <th>Document id</th>
-                <th>Document title</th>
-                <th>Explanation</th>
-                <th>Date</th>
-                <th></th>
+                <tr>
+                    <th>Document id</th>
+                    <th>Document title</th>
+                    <th>Explanation</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
 
             @foreach ($reports as $r)
                 <tr>
