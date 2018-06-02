@@ -211,34 +211,31 @@
                                 // }
 
                                 var token = $('#_token').val();
-                                alert('sending ajax request: token=' + token);
+                                //alert('sending ajax request: token=' + token);
 
                                 jQuery.ajax({
                                         type: "POST",
                                         url: '/test',
                                         dataType: 'json',
                                         data: { "sentenceId": sentenceID, "_token": token, "text": translatedSentenceText },
-                                        success: function(data){
-                                            var rep = JSON.parse(data);
-                                            console.log(data);
-                                            if(rep.code == 200)
-                                            {
-                                               alert(rep);
-                                            }
-                                            else{
-                                                alert('error');
+                                        success: function(reply){
+                                            if (reply['result'] == "Success") {
+                                                alert("Translation successfuly added!");
+                                            } else {
+                                                alert("Failed to add translation! :(");
                                             }
                                         },
                                         error: function (request, status, error) {
                                             //alert(request.responseText);
-                                            alert(status);
-                                            alert(error);
+                                            //alert(status);
+                                            //alert(error);
+                                            alert("Failed to add translation! :(");
                                         }
                                     }
                                 );
                                 //$.alert('Your translation is: ' + translatedSentenceText);
 
-                                alert('ajax request is sent');
+                                //alert('ajax request is sent');
                             }
                         },
                         cancel: function () {

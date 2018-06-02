@@ -76,7 +76,7 @@ class DocumentsController extends Controller
         $t->saveOrFail();
 
 
-        return response()->json(['success' => $request]);
+        return response()->json(['result' => 'Success']);
     }
 
     /**
