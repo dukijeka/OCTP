@@ -97,6 +97,7 @@
                     <tr>
                         <th style="width:auto">Original sentence</th>
                         <th style="max-width:200px">Translated sentence</th>
+                        <th>User</th>
                         <th style="min-width:100px">Rating</th>
                         <th style="min-width:100px">My rating</th>
                     </tr>
@@ -115,6 +116,8 @@
                                 <td>{{$sentence->text}}</td>
 
                                 <td>{{$translation->translation_text}}</td>
+
+                                <td>{{$translation->user->fullName()}}</td>
 
                                 <td>
                                     @php
