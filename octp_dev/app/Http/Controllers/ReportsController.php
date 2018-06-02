@@ -56,8 +56,10 @@ class ReportsController extends Controller
         $user = Auth::user();
 
         if(Helper::hasUserReportedDocument($user, $doc)) {
-            info('wtf');
             return response()->json(['error' => 'You already reported this document']);
+        }
+        if ($doc->user == $user) {
+            return response()->json(['error' => 'You cannot report your own document']);
         }
         $report = new Report();
         $report->explanation = $request['explanation'];
