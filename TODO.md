@@ -14,8 +14,11 @@
 	- sort translations ?
 	- when translation is successfull, refresh the page instead of displaying dialog
 	- improve design
+	- translation dialog should be larger
 
 - export db data
+
+- why other user's profile page can't be seen ?
 
 - average rating for translation should be calculated somewhere
 
