@@ -43,46 +43,20 @@
 
                 </table>
 
-                <br>
+                <br/>
 
-                {{--<br>
-                <strong>{{$doc->title()}}</strong>
-                <br>
-                <br>
-
-                Language:
-                <br>
-                <strong>{{$doc->srcLanguage()->name}}</strong>
-                <br>
-                <br>
-
-                Language requested:
-                <br>
-                <strong>{{$doc->wantedLanguageName()}}</strong>
-                <br>
-                <br>
-
-                <span>Uploaded by:</span>
-                <br>
-                <strong>{{$doc->user->fullName()}}</strong>
-                <br>
-                <br>
-
-                <span>Date:</span>
-                <br>
-                <strong>{{$doc->date_created}}</strong>
-                <br>
-                <br>--}}
-
-
-                @if(Auth::check() && ! \App\Helpers\Helper::hasUserReportedDocument(Auth::user(), $doc))
+                @if(Auth::check() && 
+                    ! \App\Helpers\Helper::hasUserReportedDocument(Auth::user(), $doc) &&
+                    Auth::user() != $doc->user)
                     <button id="reportDocument" data-id= "{{ $doc->id }}" data-token={{ csrf_token() }}>Report</button>
                 @endif
 
                 @if(Auth::check() && ( Auth::id() == $doc->user->id || Auth::user()->isAdminOrModerator() ) )
-                    <a href="/document/destroy/{{$doc->id}}">
-                        <button>Delete</button>
-                    </a>
+                    <form action="{{ route('document.destroy', $doc->id) }}" method="post">
+                            @csrf
+                            @method("delete");
+                            <button class="btn btn-danger">Delete</button>
+                    </form>
                 @endif
 
 
