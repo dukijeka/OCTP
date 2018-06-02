@@ -37,7 +37,7 @@
 
                 <span>Uploaded by:</span>
                 <br>
-                <strong>{{$doc->user->first_name}}</strong>
+                <strong>{{$doc->user->fullName()}}</strong>
                 <br>
                 <br>
 
@@ -48,9 +48,11 @@
                 <br>
 
 
-                <button id="reportDocument">Report</button>
+                @if(Auth::check() && ! \App\Helpers\Helper::hasUserReportedDocument(Auth::user(), $doc))
+                    <button id="reportDocument">Report</button>
+                @endif
 
-                @if(Auth::id() == $doc->user->id)
+                @if(Auth::check() && ( Auth::id() == $doc->user->id || Auth::user()->isAdminOrModerator() ) )
                     <a href="/document/destroy/{{$doc->id}}">
                         <button>Delete</button>
                     </a>
@@ -102,7 +104,7 @@
                     @foreach ($doc->sentences as $sentence)
 
                         @php
-                            $allTranslations = \App\Translation::find(['sentence_id' => $sentence->id]);
+                            $allTranslations = \App\Translation::where('sentence_id', $sentence->id);
                         @endphp
 
                         @foreach ($allTranslations as $translation)
@@ -122,7 +124,7 @@
 
                                 <td>
                                     @php
-                                    $myRating = $translation->ratings()->where(['user_id' => Auth::id()])->first();
+                                    $myRating = $translation->ratings()->where('user_id', Auth::id())->first();
                                     if($myRating != null) {
                                         RatingHelper::displayRatingStars($myRating->rating_value);
                                     }

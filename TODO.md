@@ -14,7 +14,7 @@
 	- display translations and ratings
 	- select sentences
 	
-
+- average rating for translation should be calculated somewhere
 
 
 
