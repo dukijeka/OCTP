@@ -26,7 +26,14 @@
                     <td>{{$r->explanation}}</td>
                     <td>{{$r->date}}</td>
                     <td>{{$r->user->fullName()}}</td>
-                    <td> <a href="/report/destroy?docId={{$r->document->id}}&userId={{$r->user->id}}">Delete</a> </td>
+                    <td> 
+                    <form method="post" action="{{ route('report.destroy', ['doc' => $r->document->id,
+                                                                            'user' => $r->user->id]) }}">
+                        @csrf
+                        @method("delete")
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    </td>
                 </tr>
             @endforeach
 

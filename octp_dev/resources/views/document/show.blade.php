@@ -49,7 +49,7 @@
 
 
                 @if(Auth::check() && ! \App\Helpers\Helper::hasUserReportedDocument(Auth::user(), $doc))
-                    <button id="reportDocument">Report</button>
+                    <button id="reportDocument" data-id= "{{ $doc->id }}" data-token={{ csrf_token() }}>Report</button>
                 @endif
 
                 @if(Auth::check() && ( Auth::id() == $doc->user->id || Auth::user()->isAdminOrModerator() ) )
@@ -157,10 +157,27 @@
 
             $('#reportDocument').click(function() {
                 var explanation = prompt('Enter reason why are you reporting this document:');
+                var token = $('#reportDocument').data('token');
+                var docId = $('#reportDocument').data('id');
                 if(explanation != null) {
                     // redirect
                     // TODO: escape 'explanation'
-                    location.href = "/report/store/?docId={{$doc->id}}&explanation=" + explanation;
+                    //location.href = "/report/store/?docId={{$doc->id}}&explanation=" + explanation;
+                    $.ajax({
+                        url: "{{ route("report.store") }}",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            'id': docId,
+                            'explanation': explanation,
+                            '_token': token,
+                        },
+                        success: function(data) {
+                            if (data.hasOwnProperty('success')) {
+                                location.reload();
+                            }
+                        }
+                    })
                 }
             });
 
