@@ -123,7 +123,7 @@ class ReportsController extends Controller
                 return back()->withErrors("You can not delete this report");
             }
         }
-        $result = DB::delete('delete from report where document_id = ? and user_id = ?', [$doc, $user->id]);
+        $result = DB::delete('delete from report where document_id = ? and user_id = ?', [$doc, $author->id]);
         return back()->withSuccess('Report deleted');
     }
 }
