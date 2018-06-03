@@ -217,7 +217,7 @@
                     $executed = true;
                 }
 
-                var sentenceID = Number(event.target.id.replace("sentence_", ""));
+                var sentenceID = event.target.id.replace("sentence_", "");
                 var originalSentence = document.getElementById(event.target.id).innerText;
                 $.confirm({
                     title: 'Translate',
