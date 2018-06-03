@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Comment\Doc;
+use Illuminate\Support\Facades\DB;
 
 class DocumentsController extends Controller
 {
