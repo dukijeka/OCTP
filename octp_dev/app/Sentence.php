@@ -51,4 +51,28 @@ class Sentence extends Model
     public function translations() {
         return $this->hasMany('App\Translation');
     }
+
+
+    /**
+     * Returns the translation with the most ratings
+     * If more than one translation has the most ratings, returns the one with better average rating
+     * @return Translation
+     */
+    public function getTranslationWithTheMostRatings() {
+        $max = 0;
+        $translationToReturn = null;
+        foreach ($this->translations as $translation) {
+            info("this is it". json_encode($translation));
+            if ($translation->ratings->count() > $max) {
+                $translationToReturn = $translation;
+                $max = $translation->ratings->count();
+            } elseif ($translation->ratings->count() == $max
+                and $translation['average_rating'] > $translationToReturn['average_rating']) {
+                // the number of ratings is the same, but this one has the better average rating, so we'll choose it
+                $translationToReturn = $translation;
+            }
+        }
+
+        return $translationToReturn;
+    }
 }

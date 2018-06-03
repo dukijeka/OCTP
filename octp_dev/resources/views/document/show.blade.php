@@ -100,7 +100,22 @@
                 <p>
 
                     @foreach ($doc->sentences as $sentence)
-                        <span class="sentence" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+
+                        @php
+                            $translationWithMostRatings = $sentence->getTranslationWithTheMostRatings();
+                        @endphp
+
+
+                        @if ($translationWithMostRatings == null or $translationWithMostRatings->ratings->count() < 2)
+                            <span class="sentence text-muted" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+                        @elseif($translationWithMostRatings['average_rating'] > 4)
+                            <span class="sentence text-success" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+                        @elseif($translationWithMostRatings['average_rating'] < 2)
+                            <span class="sentence text-danger" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+                        @else
+                            <span class="sentence text-warning" id="sentence_{{$sentence->id}}">{{$sentence->text}} </span>
+                        @endif
+
                     @endforeach
 
                 </p>
