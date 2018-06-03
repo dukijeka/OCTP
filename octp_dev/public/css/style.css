@@ -194,7 +194,7 @@ h2 {
 	margin: 0;
     padding: 0;
 	background-color: #f1f1f1;
-	font-size: 17px;
+	font-size: 15px;
 	height: 100%;
 	padding-left: 20px;
 	/*position:fixed;*/
@@ -255,14 +255,15 @@ h2 {
 }
 
 div.docum {
+    background-color: white;
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
     width: 100%;
 	height: 200px;
-	padding-left: 10;
-	padding-top: 10;
-	padding-bottom: 10;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	overflow: hidden;
 	/*display: none;*/
 }
@@ -276,12 +277,12 @@ div.desc {
 div.title {
 	font-size: 20px;
 	text-decoration: bold;
-	background-color: #feb236;
+	background-color: #86af49;
 	width: 50%;
 	height: 25%;
-	padding-left: 10;
-	padding-top: 10;
-	padding-bottom: 10;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	float: left;
 }
 div.fromto {
@@ -297,9 +298,9 @@ div.tfrom {
 	width: 50%;
 	float:left;
 	height: 25%;
-	padding-left: 10;
-	padding-top: 10;
-	padding-bottom: 10;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 }
 div.tto {
@@ -311,22 +312,23 @@ div.tto {
 	width: 50%;
 	float:right;
 	height: 25%;
-	padding-left: 10;
-	padding-top: 10;
-	padding-bottom: 10;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 }
 
 div.tekst {
 	width: 100%;
-	padding-left: 10;
-	padding-top: 50;
-	padding-bottom: 10;
-	padding-right: 10;
+	padding-top: 40px;
 }
 
 div.line {
 	width: 100%;
+}
+
+div.title a {
+    color:white;
 }
 
 .home-in {

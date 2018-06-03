@@ -20,7 +20,7 @@
 
             <div>
 
-                <table class="table table-striped">
+                <!--<table class="table table-striped">
 
                     <tr>
                         <th>Document name:</th>
@@ -41,6 +41,31 @@
 
                     </tr>
 
+                </table>-->
+
+                <table> <!-- align="center">-->
+
+                    <tr>
+                        <th>Document name:</th>
+                        <td>{{$doc->title()}}</td>
+                    </tr>
+                    <tr>
+                        <th>Language:</th>
+                        <td>{{$doc->srcLanguage()->name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Language requested:</th>
+                        <td>{{$doc->wantedLanguageName()}}</td>
+                    </tr>
+                    <tr>
+                        <th>Uploaded by:</th>
+                        <td>{{$doc->user->fullName()}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date:</th>
+                        <td>{{$doc->date_created}}</td>
+                    </tr>
+
                 </table>
 
                 <br/>
@@ -54,7 +79,7 @@
                 @if(Auth::check() && ( Auth::id() == $doc->user->id || Auth::user()->isAdminOrModerator() ) )
                     <form action="{{ route('document.destroy', $doc->id) }}" method="post">
                             @csrf
-                            @method("delete");
+                            @method("delete")
                             <button class="btn btn-danger">Delete</button>
                     </form>
                 @endif
