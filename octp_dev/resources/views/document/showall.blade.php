@@ -13,12 +13,14 @@
                         <option id="{{$lang->id}}">{{$lang->name}}</option>
                     @endforeach
                 </select>
+                <br><br>
                 <p>Translate to: </p>
                 <select id="to">
                     @foreach (\App\Language::all() as $lang)
                         <option id="{{$lang->id}}">{{$lang->name}}</option>
                     @endforeach
                 </select>
+                <br><br>
                 <p>Sort by: </p>
                 <select id="sort_date">
                     <option id="DNew">Date newest</option>
