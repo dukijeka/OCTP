@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string $date_joined
  * @property int $access_level
  * @property float $rating
+ * @property int $num_of_ratings
  * @property Document[] $documents
  * @property Language[] $languages
  * @property Rating[] $ratings
@@ -55,7 +56,8 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
                            'date_of_birth', 
                            'date_joined', 
                            'access_level', 
-                           'rating'];
+                           'rating',
+                           'num_of_ratings'];
     /**
      * Disable timestamps
      */
@@ -117,4 +119,12 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function userRating() {
+        return $this->rating;
+    }
+
+    public function updateUserRating($rating) {
+        $this->userRating = (($this->rating/20*$this->num_of_ratings + $rating)/($this->num_of_ratings + 1))*20;
+        $this->num_of_ratings++;
+    }
 }
