@@ -20,7 +20,7 @@
 
             <div>
 
-                <!--<table class="table table-striped">
+                {{--<table class="table table-striped">
 
                     <tr>
                         <th>Document name:</th>
@@ -41,9 +41,9 @@
 
                     </tr>
 
-                </table>-->
+                </table> --}}
 
-                <table> <!-- align="center">-->
+                <table>
 
                     <tr>
                         <th>Document name:</th>
@@ -136,9 +136,9 @@
                 <table class="table table-striped">
 
                     <tr>
-                        <th style="width:auto">Original sentence</th>
-                        <th style="max-width:200px">Translated sentence</th>
-                        <th>User</th>
+                        <th>Original sentence</th>
+                        <th>Translated sentence</th>
+                        <th style="min-width:100px">User</th>
                         <th style="min-width:100px">Rating</th>
                         <th style="min-width:100px">My rating</th>
                     </tr>
@@ -159,11 +159,10 @@
                                 <td>{{$translation->translation_text}}</td>
 
                                 <td>{{$translation->user->fullName()}}</td>
-
                                 <td>
                                     @php
-                                        $averageRating = (int) $translation->average_rating ;
-                                        RatingHelper::displayRatingStars($averageRating);
+                                        $averageRating = (int) $translation->average_rating;
+                                        RatingHelper::displayRatingStars($averageRating, $translation->id);
                                     @endphp
                                 </td>
 
@@ -171,7 +170,7 @@
                                     @php
                                     $myRating = $translation->ratings()->where('user_id', Auth::id())->first();
                                     if($myRating != null) {
-                                        RatingHelper::displayRatingStars($myRating->rating_value);
+                                        RatingHelper::displayMyRatingStars($myRating->rating_value, $translation->id);
                                     }
                                     @endphp
                                 </td>
@@ -194,8 +193,6 @@
 @endsection
 
 @section('script')
-
-
     <script>
         var $executed = false;
         $(document).ready(function(){
@@ -226,7 +223,7 @@
                 }
             });
 
-            $('span').click(function(event) {
+            $('.sentence').click(function(event) {
                 if (!$executed) {
                     $.noConflict(); //ne radi bez ovoga (sme da se izvrsi samo jednom inace ne zna sta je $)
                     $executed = true;
@@ -298,6 +295,27 @@
 
 
         });
-
+        jQuery(document).ready(function() {
+            jQuery(".rate").on('click', function(event) {
+                var num = $(event.target).data('star');
+                var translationId = $(event.target).data('id');
+                var token = $('meta[name="csrf-token"]').attr('content');
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '{{ route('rating.store') }}',
+                    dataType: 'json',
+                    data: {
+                        '_token': token,
+                        'num': num,
+                        'translationId': translationId
+                    },
+                    success: function(data) {
+                        if (data.hasOwnProperty('success')) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
     </script>
 @endsection

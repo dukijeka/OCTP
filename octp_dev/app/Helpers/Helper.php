@@ -9,17 +9,30 @@ use Illuminate\Support\Facades\Response;
 
 class Helper
 {
-    public static function displayRatingStars(int $numStars)
+    public static function displayRatingStars(int $numStars, int $id)
     {
 
         $starsLeft = 5 - $numStars ;
 
-        for ($i=0; $i < $numStars; $i++) {
-            echo '<span class="fa fa-star checked"></span>';
+        $i = 0;
+        for (; $i < $numStars; $i++) {
+            echo '<span class="fa fa-star checked rate" data-star="'.($i + 1).'" data-id="'.$id.'"></span>';
         }
 
-        for ($i=0; $i < $starsLeft; $i++) {
-            echo '<span class="fa fa-star"></span>';
+        for ($j=0; $j < $starsLeft; $j++, $i++) {
+            echo '<span class="fa fa-star rate" data-star="'.($i + 1).'" data-id="'.$id.'"></span>';
+        }
+    }
+
+    public static function displayMyRatingStars(int $numStars, int $id) {
+        $starsLeft = 5 - $numStars;
+
+        $i = 0;
+        for(; $i < $numStars; $i++) {
+            echo '<span class="fa fa-star checked change" data-star="'.($i + 1).'" data-id="'.$id.'"></span>';
+        }
+        for ($j = 0; $j < $starsLeft; $j++) {
+            echo '<span class="fa fa-star change" data-star="'.($i + 1).'" data-id="'.$id.'"></span>';
         }
 
     }
