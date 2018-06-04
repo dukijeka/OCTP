@@ -60,3 +60,7 @@ Route::resource('translation',
                 'TranslationsController',
                 ['only' => ['index',
                             'destroy']])->middleware('auth');
+
+Route::resource('rating',
+                'RatingsController',
+                ['only' => ['store']])->middleware('auth');

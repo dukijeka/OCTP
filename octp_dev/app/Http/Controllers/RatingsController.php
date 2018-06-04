@@ -19,43 +19,31 @@ class RatingsController
 {
     public function store(Request $request)
     {
-        info('rated');
         $data = $request->all();
 
         $translation = Translation::findOrFail($data['translationId']);
 
+        $rating = Rating::where("user_id", Auth::id())->
+                          where("translation_id", $data['translationId'])->first();
+        if ($rating != null) {
+            info($rating);
+            return response()->json(['error' => 'You already rated this translation']);
+        }
         // insert into db
         $r = new Rating();
         $r->user()->associate(Auth::user());
         $r->translation()->associate($translation);
         $r->date = Carbon::now();
-        $r->rating_value = $data['myRating'];
+        $r->rating_value = $data['num'];
 
-        compute($r->translation->id);
+        $this->compute($r->translation->id);
 
         $r->saveOrFail();
 
-        return response()->json(['result' => 'Success']);
+        return response()->json(['success' => 'Rating saved']);
     }
 
-    public function update(Request $request)
-    {
-        if (!Auth::check()) {
-            return response()->json(['error' => 'You must be logged in to edit rating']);
-        }
-        $rating = Rating::find($request['id']);
-        if (Auth::id() != $rating->user->id) {
-            return response()->json(['error' => 'You can only edit your own rating']);
-        }
-        $rating->rating_value = $request['newRating'];
-        $rating->save();
-
-        compute($rating->translation->id);
-
-        return response()->json(['success' => 'Rating updated']);
-    }
-
-    public function compute($translationId) {
+    private function compute($translationId) {
         $ratings = Rating::all();
         $sum_user_rating = 0;
         $sum_translation_rating = 0;
@@ -67,12 +55,15 @@ class RatingsController
                 $sum_translation_rating += $user->userRating() / 100 * $rating->rating_value;
             }
         }
-
+        if ($sum_user_rating == 0) {
+            return null;
+        }
         $rating = $sum_translation_rating/$sum_user_rating;
 
         $translation = Translation::find($translationId);
         $user2 = User::find($translation->user_id);
         $user2->updateUserRating($rating);
+        $user2->save();
 
         return $rating;
     }
