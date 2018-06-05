@@ -31,6 +31,11 @@
                 </a>
             </li>
             @endif
+            <li>
+                <a href="/translation" class="dropbtn">
+                    My translations
+                </a>
+            </li>
         @endif
         @if (Auth::check())
             @if(Auth::user()->isAdminOrModerator())
