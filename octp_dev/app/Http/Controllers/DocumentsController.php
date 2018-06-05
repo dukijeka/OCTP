@@ -157,9 +157,6 @@ class DocumentsController extends Controller
         $document->posting_user_id = Auth::id();
         $document->title = $data['documentName'];
 
-        // TODO: where to save text or file ? => we have to split it into sentences and add them to db
-
-        // TODO: document table has no column for document name
 
         $document->save();
 

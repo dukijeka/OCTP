@@ -5,7 +5,7 @@
 @section('content')
     <div class="prostor">
 
-        <div id = "izbor">
+        {{--<div id = "izbor">
             <form>
                 <p>Translate from: </p>
                 <select id="from">
@@ -28,7 +28,7 @@
                 </select>
                 <br><br><input type = "button" onClick="myF()" value = "Show"></input>
             </form>
-        </div>
+        </div>--}}
 
         <div id="tekst">
 

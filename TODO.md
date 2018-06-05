@@ -4,14 +4,15 @@
 
 **Priority**
 
-- View documents - improve design ; sort ? ;
+- View documents - sort ? ;
 
 - View document
 	- color sentences
-	- sort translations ?
 	- translation dialog should be larger
 
 - average rating for translation should be calculated somewhere
+
+- my translations page - not all translations can be edited
 
 - my ratings page ?
 
