@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'date_of_birth' => $data['dob'],
             'date_joined' => Carbon::now(),
             'access_level' => 1,
-            'rating' => 0
+            'rating' => 10
         ]);
         $knows_language = new KnowsLanguage();
         $language = Language::where('name', $data['nativelanguage'])->first();

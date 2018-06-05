@@ -125,6 +125,8 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
 
     public function updateUserRating($rating) {
         $this->userRating = (($this->rating/20*$this->num_of_ratings + $rating)/($this->num_of_ratings + 1))*20;
+        if ($this->userRating > 100)
+            $this->userRating = 100;
         $this->num_of_ratings++;
     }
 }
