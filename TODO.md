@@ -4,27 +4,18 @@
 
 **Priority**
 
-- rating
-
 - View documents - improve design ; sort ? ;
 
 - View document
-	- percentage of translated text ?
 	- color sentences
 	- sort translations ?
-	- when translation is successfull, refresh the page instead of displaying dialog
-	- improve design
 	- translation dialog should be larger
-
-- export db data
-
-- why other user's profile page can't be seen ?
 
 - average rating for translation should be calculated somewhere
 
-- my translations page ?
-
 - my ratings page ?
+
+- why other user's profile page can't be seen ?
 
 
 **Optional**
