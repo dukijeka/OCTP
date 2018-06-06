@@ -72,4 +72,8 @@ class Translation extends Model
     public function language() {
         return $this->hasOne('App\Language');
     }
+
+    public function setAvgRating($rating) {
+        $this->average_rating = $rating;
+    }
 }
