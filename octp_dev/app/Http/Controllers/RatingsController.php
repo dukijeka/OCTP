@@ -55,13 +55,14 @@ class RatingsController
                 $sum_translation_rating += $user->userRating() / 100 * $rating->rating_value;
             }
         }
+
         $translation = Translation::find($translationId);
         $average_rating =  $sum_translation_rating/$sum_user_rating;
         $translation->setAvgRating($average_rating);
         $translation->save();
 
         $user1 = User::find($user_id);
-        $rating = $user1->rating/100 * $rating_value;
+        $rating = $user1->rating / 100 * $rating_value;
 
         $user2 = User::find($translation->user_id);
         $user2->updateUserRating($rating, $user1->rating/100);
