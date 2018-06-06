@@ -36,17 +36,17 @@ class RatingsController
         $r->date = Carbon::now();
         $r->rating_value = $data['num'];
 
-        $this->compute($translation->id, $r->user, $r->rating_value);
-
         $r->saveOrFail();
+
+        $this->compute($translation->id, $r->user_id, $r->rating_value());
 
         return response()->json(['success' => 'Rating saved']);
     }
 
     private function compute($translationId, $user_id, $rating_value) {
         $ratings = Rating::all();
-        $sum_user_rating = 0;
-        $sum_translation_rating = 0;
+        $sum_user_rating = 0.0;
+        $sum_translation_rating = 0.0;
 
         foreach ($ratings as $rating) {
             if($rating->translation_id==$translationId) {
@@ -56,8 +56,14 @@ class RatingsController
             }
         }
 
+        info($sum_translation_rating);
+        info($sum_user_rating);
+
         $translation = Translation::find($translationId);
-        $translation->average_rating =  $sum_translation_rating/$sum_user_rating;
+        $average_rating =  $sum_translation_rating/$sum_user_rating;
+        $translation->setAvgRating($average_rating);
+        $translation->save();
+        info($translation->average_rating);
 
         $user1 = User::find($user_id);
         $rating = $user1->rating/100 * $rating_value;
