@@ -46,4 +46,8 @@ class Rating extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function rating_value() {
+        return $this->rating_value;
+    }
 }
