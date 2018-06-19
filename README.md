@@ -5,32 +5,20 @@
 
 Open community translation project - online service for translating documents.
 
-<br>
+Upload documents to be translated, translate other documents, or give rating to other users.
 
-### Prototype pages
-
-- [Pocetna strana](prototypes/View%20documents.html)
-
-- [View document](prototypes/viewdocument.html) 
-
-- [Edit profile](prototypes/Administriranje%20profila.html) 
-
-- [Registration](prototypes/registration.html) 
-
-- [Login](prototypes/Login.html) 
-
-- [Upload dokumenta](prototypes/upload.html) 
+Built in PHP/Laravel.
 
 <br>
 
-### Database plan
+### Setup
 
-- [DBPlan](docs/DBPlan.md) 
+- configure mysql server (user="root", pass="", db="octp")
+- import [db](docs/db/model_db.sql)
+- open terminal in octp_dev directory
+- run *composer update* to install dependencies
+- start web server, eg *php artisan serve*
 
 
 <br>
-<br>
-
-That's all so far :D
-
 <br>
